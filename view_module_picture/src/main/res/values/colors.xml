@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="maven_picture_theme_color">#22292c</color>
+    <color name="maven_picture_camera_item_bg">#80CCCCCC</color>
+    <color name="maven_picture_theme_bg_color">#000000</color>
+    <color name="maven_picture_time_bg_color">#9e111212</color>
+    <color name="maven_picture_mask_bg_color">#c4111212</color>
+</resources>

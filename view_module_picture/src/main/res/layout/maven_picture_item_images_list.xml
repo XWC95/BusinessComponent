@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.taojiji.view.picture.weight.SquareFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/maven_picture_ic_default_image" />
+
+    <View
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone" />
+
+    <com.taojiji.view.picture.weight.SuperCheckBox
+        android:id="@+id/checkbox"
+        style="@style/maven_picture_SuperCheckboxTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/maven_picture_checkbox_normal" />
+
+</com.taojiji.view.picture.weight.SquareFrameLayout>

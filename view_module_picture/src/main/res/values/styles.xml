@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--SuperCheckbox的样式-->
+    <style name="maven_picture_SuperCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/maven_picture_selector_item_checked</item>
+    </style>
+</resources>

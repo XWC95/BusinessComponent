@@ -1,0 +1,15 @@
+<resources>
+    <string name="maven_picture_app_name">image_select</string>
+    <string name="maven_picture_all_images">全部图片</string>
+    <string name="maven_picture_select_image">图片选择</string>
+    <string name="maven_picture_max_select_image">最多只能选%1s张图片哦~</string>
+    <string name="maven_picture_preview_image_button_count">预览(%1s)</string>
+    <string name="maven_picture_complete">完成</string>
+    <string name="maven_picture_complete_with_select_image_count">完成(%1$s/%2$s)</string>
+    <string name="maven_picture_how_image_count">%1s张</string>
+    <string name="maven_picture_zero_image">0张</string>
+    <string name="maven_picture_choose">选择</string>
+    <string name="maven_picture_preview_image_count">%1$s/%2$s</string>
+    <string name="maven_picture_open_camera_failure">打开相机失败</string>
+    <string name="maven_picture_photo_grid_capture">拍一张</string>
+</resources>

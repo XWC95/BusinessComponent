@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="maven_picture_select_image_title_height">50dp</dimen>
+    <dimen name="maven_picture_select_image_bottom_layout">50dp</dimen>
+    <dimen name="maven_picture_image_grid_spacing">3dp</dimen>
+</resources>

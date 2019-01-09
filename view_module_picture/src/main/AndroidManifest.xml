@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.taojiji.view.picture">
+
+    <application>
+        <activity
+            android:name=".ui.SelectImageActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="nosensor" />
+        <activity android:name=".ui.PreviewImageActivity" />
+        <activity
+            android:name=".ui.CameraActivity"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <provider
+            android:name=".PhotoProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/maven_picture_external_path" />
+        </provider>
+
+    </application>
+</manifest>

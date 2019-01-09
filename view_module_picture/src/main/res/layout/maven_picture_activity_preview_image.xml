@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maven_picture_theme_bg_color">
+
+    <com.taojiji.view.picture.weight.FixViewPager
+        android:id="@+id/previewVp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/maven_picture_select_image_title" />
+
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="@color/maven_picture_theme_color">
+
+        <com.taojiji.view.picture.weight.SuperCheckBox
+            android:id="@+id/preview_checkbox"
+            style="@style/maven_picture_SuperCheckboxTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:drawablePadding="4dp"
+            android:includeFontPadding="true"
+            android:paddingLeft="8dp"
+            android:text="@string/maven_picture_choose"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</FrameLayout>

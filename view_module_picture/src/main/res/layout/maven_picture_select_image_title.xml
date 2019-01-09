@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/preview_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/maven_picture_select_image_title_height"
+    android:background="@color/maven_picture_theme_color">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/maven_picture_ic_back" />
+
+    <TextView
+        android:id="@+id/image_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/maven_picture_select_image"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/maven_picture_selector_top_ok"
+        android:minWidth="50dp"
+        android:minHeight="30dp"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>
