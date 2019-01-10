@@ -20,19 +20,19 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
-    
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation project(':view_module_photoview')
     implementation project(':view_module_picture')
+    implementation project(':business_module_http')
+    implementation project(':view_module_refresh')
+    implementation project(':view_module_swipeback')
 }

@@ -9,8 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/business_module_http" />
             <option value="$PROJECT_DIR$/view_module_photoview" />
             <option value="$PROJECT_DIR$/view_module_picture" />
+            <option value="$PROJECT_DIR$/view_module_refresh" />
+            <option value="$PROJECT_DIR$/view_module_swipeback" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

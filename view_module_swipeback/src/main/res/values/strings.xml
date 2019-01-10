@@ -1,0 +1,3 @@
+<resources>
+    <integer name="maven_swipeback_anim_duration">200</integer>
+</resources>
