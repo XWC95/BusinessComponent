@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/maven_picture_theme_bg_color">
 
-    <com.taojiji.view.picture.weight.FixViewPager
+    <com.from.view.picture.weight.FixViewPager
         android:id="@+id/previewVp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -18,7 +18,7 @@
         android:layout_gravity="bottom"
         android:background="@color/maven_picture_theme_color">
 
-        <com.taojiji.view.picture.weight.SuperCheckBox
+        <com.from.view.picture.weight.SuperCheckBox
             android:id="@+id/preview_checkbox"
             style="@style/maven_picture_SuperCheckboxTheme"
             android:layout_width="wrap_content"

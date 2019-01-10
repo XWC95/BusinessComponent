@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.taojiji.view.picture.weight.SquareFrameLayout
+<com.from.view.picture.weight.SquareFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -18,7 +18,7 @@
         android:background="#88000000"
         android:visibility="gone" />
 
-    <com.taojiji.view.picture.weight.SuperCheckBox
+    <com.from.view.picture.weight.SuperCheckBox
         android:id="@+id/checkbox"
         style="@style/maven_picture_SuperCheckboxTheme"
         android:layout_width="wrap_content"
@@ -28,4 +28,4 @@
         android:paddingRight="10dp"
         android:src="@drawable/maven_picture_checkbox_normal" />
 
-</com.taojiji.view.picture.weight.SquareFrameLayout>
+</com.from.view.picture.weight.SquareFrameLayout>
