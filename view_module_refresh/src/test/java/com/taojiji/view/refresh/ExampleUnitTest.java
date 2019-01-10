@@ -1,4 +1,4 @@
-package com.from.view.refresh;
+package com.taojiji.view.refresh;
 
 import org.junit.Test;
 

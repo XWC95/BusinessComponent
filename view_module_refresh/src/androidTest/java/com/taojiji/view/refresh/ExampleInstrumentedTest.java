@@ -1,4 +1,4 @@
-package com.from.view.refresh;
+package com.taojiji.view.refresh;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.from.view.refresh.test", appContext.getPackageName());
+        assertEquals("com.taojiji.view.refresh.test", appContext.getPackageName());
     }
 }
