@@ -1,1 +1,1 @@
-include ':app', ':view_module_photoview', ':view_module_picture', ':business_module_http', ':view_module_swipeback', ':view_module_refresh'
+include ':app', ':view_module_photoview', ':view_module_picture', ':view_module_swipeback', ':view_module_refresh', ':business_module_http'
