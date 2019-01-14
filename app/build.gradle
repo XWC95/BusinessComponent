@@ -29,10 +29,11 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation project(':view_module_photoview')
     implementation project(':view_module_picture')
-    implementation project(':business_module_http')
     implementation project(':view_module_refresh')
     implementation project(':view_module_swipeback')
+    implementation project(':business_module_http')
 }
