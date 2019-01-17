@@ -1,11 +1,16 @@
-apply from:"../common_component_build.gradle"
+apply from: "../common_component_build.gradle"
+android {
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 
+}
 dependencies {
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
 
     //rx
     api rootProject.ext.dependencies["rxjava2"]
@@ -55,4 +60,7 @@ dependencies {
     }
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["gson"]
+    api 'com.uber.autodispose:autodispose-android:1.1.0'
+    api'com.uber.autodispose:autodispose-android-archcomponents:1.1.0'
+
 }
