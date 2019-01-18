@@ -1,7 +1,7 @@
 package com.from.business.http.module.http;
 
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.utils.Preconditions;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 
 import java.util.concurrent.ExecutorService;
 

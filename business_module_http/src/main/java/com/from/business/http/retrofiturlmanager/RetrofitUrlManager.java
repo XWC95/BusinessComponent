@@ -37,7 +37,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static com.from.business.http.retrofiturlmanager.Utils.checkUrl;
-import static com.from.business.http.utils.Preconditions.checkNotNull;
+import static dagger.internal.Preconditions.checkNotNull;
 
 /**
  * ================================================

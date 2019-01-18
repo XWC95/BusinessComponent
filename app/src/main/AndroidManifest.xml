@@ -3,6 +3,9 @@
     package="me.businesscomponent">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".BaseApplication"
@@ -19,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".example.PicExampleActivity" />
-        <activity android:name=".example.HttpExampleActivity" />
+        <activity android:name=".activity.PicExampleActivity" />
+        <activity android:name=".activity.HttpExampleActivity" />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
-package me.businesscomponent.example;
+package me.businesscomponent.activity;
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,18 @@ import com.from.business.http.integration.IRepositoryManager;
 import com.from.business.http.lifecycle.AndroidLifecycleScopeProvider;
 import com.from.business.http.retrofiturlmanager.RetrofitUrlManager;
 import com.from.business.http.utils.HttpModuleUtils;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.AutoDisposeConverter;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import io.rx_cache2.DynamicKey;
+import io.rx_cache2.EvictDynamicKey;
+import io.rx_cache2.Reply;
+import me.businesscomponent.cache.CacheProviders;
 import me.businesscomponent.entity.GankBaseResponse;
 import me.businesscomponent.entity.GankItemBean;
 import me.businesscomponent.entity.User;
@@ -23,6 +31,7 @@ import me.businesscomponent.http.GankService;
 import me.businesscomponent.http.UserService;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
+import timber.log.Timber;
 
 import static com.uber.autodispose.AutoDispose.autoDisposable;
 import static me.businesscomponent.http.GankService.GANK_DOMAIN;
@@ -44,8 +53,8 @@ public class HttpExampleActivity extends AppCompatActivity {
         IRepositoryManager mRepositoryManager = appComponent.repositoryManager();
 
         mRepositoryManager
-            .obtainRetrofitService(UserService.class)
-            .getUserseRROR(1, 10)
+            .obtainCacheService(CacheProviders.class)
+            .getUsers(mRepositoryManager.obtainRetrofitService(UserService.class).getUsers(1, 10), new DynamicKey(1), new EvictDynamicKey(true))
             .subscribeOn(Schedulers.io())
             .retryWhen(new RetryWithDelay(3, 2))//遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
             .doOnSubscribe(disposable -> {
@@ -55,11 +64,11 @@ public class HttpExampleActivity extends AppCompatActivity {
             .doFinally(() -> {
                 //隐藏 loading View
             })
-            .as(autoDisposable(AndroidLifecycleScopeProvider.from(this)))
-            .subscribe(new ErrorHandleSubscriber<List<User>>(appComponent.rxErrorHandler()) {
+            .as(bindLifecycle())
+            .subscribe(new ErrorHandleSubscriber<Reply<List<User>>>(appComponent.rxErrorHandler()) {
                 @Override
-                public void onNext(List<User> users) {
-                    Toast.makeText(HttpExampleActivity.this, users.size() + "", Toast.LENGTH_SHORT).show();
+                public void onNext(Reply<List<User>> listReply) {
+                    Toast.makeText(HttpExampleActivity.this, listReply.getData().size() + "", Toast.LENGTH_SHORT).show();
                 }
             });
         Lifecycle lifecycle = getLifecycle();
@@ -75,12 +84,16 @@ public class HttpExampleActivity extends AppCompatActivity {
             .doFinally(() -> {
 
             })
-            .as(autoDisposable(AndroidLifecycleScopeProvider.from(lifecycle)))
+            .as(bindLifecycle())
             .subscribe(new ErrorHandleSubscriber<GankBaseResponse<List<GankItemBean>>>(appComponent.rxErrorHandler()) {
                 @Override
                 public void onNext(GankBaseResponse<List<GankItemBean>> response) {
-                    Toast.makeText(HttpExampleActivity.this, response.getResults().size() + "", Toast.LENGTH_SHORT).show();
+                    Timber.d("结果：" + response.getResults().size());
                 }
             });
+    }
+
+    public <T> AutoDisposeConverter<T> bindLifecycle() {
+        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this));
     }
 }

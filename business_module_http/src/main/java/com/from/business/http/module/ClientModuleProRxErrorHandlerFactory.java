@@ -2,9 +2,10 @@ package com.from.business.http.module;
 
 import android.app.Application;
 
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
-import com.from.business.http.utils.Preconditions;
+import javax.inject.Provider;
+
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;

@@ -1,8 +1,10 @@
 package com.from.business.http.log;
 
 import com.from.business.http.HttpHandler;
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
+
+import javax.inject.Provider;
+
+import dagger.internal.Factory;
 
 public final class RequestInterceptorFactory implements Factory<RequestInterceptor> {
     private final Provider<HttpHandler> mHandlerProvider;

@@ -5,6 +5,8 @@ import android.content.Context;
 import com.from.business.http.IAppComponent;
 import com.from.business.http.component.AppComponent;
 
+import dagger.internal.Preconditions;
+
 /**
  * @author Vea
  * @since 2019-01-14
@@ -12,7 +14,7 @@ import com.from.business.http.component.AppComponent;
 public class HttpModuleUtils {
     public static AppComponent obtainAppComponentFromContext(Context context) {
         Preconditions.checkNotNull(context, "%s cannot be null", Context.class.getName());
-        Preconditions.checkState(context.getApplicationContext() instanceof IAppComponent, "%s must be implements %s", context.getApplicationContext().getClass().getName(), IAppComponent.class.getName());
+//        Preconditions.checkState(context.getApplicationContext() instanceof IAppComponent, "%s must be implements %s", context.getApplicationContext().getClass().getName(), IAppComponent.class.getName());
         return ((IAppComponent) context.getApplicationContext()).getAppComponent();
     }
 }

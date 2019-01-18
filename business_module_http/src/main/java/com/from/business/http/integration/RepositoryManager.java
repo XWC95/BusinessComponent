@@ -22,8 +22,9 @@ import android.support.annotation.Nullable;
 
 import com.from.business.http.cache.Cache;
 import com.from.business.http.cache.CacheType;
-import com.from.business.http.dagger.Lazy;
-import com.from.business.http.utils.Preconditions;
+
+import dagger.Lazy;
+import dagger.internal.Preconditions;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

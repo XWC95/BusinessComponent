@@ -1,8 +1,8 @@
 package com.from.business.http.module.http;
 
-import com.from.business.http.dagger.Factory;
+import dagger.internal.Factory;
 import com.from.business.http.log.FormatPrinter;
-import com.from.business.http.utils.Preconditions;
+import dagger.internal.Preconditions;
 
 public final class HttpConfigModuleFormatPrinterFactory
     implements Factory<FormatPrinter> {

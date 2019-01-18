@@ -3,9 +3,11 @@ package com.from.business.http.module.http;
 import android.app.Application;
 
 import com.from.business.http.cache.Cache;
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
-import com.from.business.http.utils.Preconditions;
+
+import javax.inject.Provider;
+
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 
 public final class HttpConfigModuleCacheFactoryFactory implements Factory<Cache.Factory> {
     private final HttpConfigModule module;

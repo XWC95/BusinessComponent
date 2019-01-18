@@ -3,12 +3,13 @@ package com.from.business.http.module;
 import android.app.Application;
 
 import com.from.business.http.HttpHandler;
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
-import com.from.business.http.utils.Preconditions;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+
+import javax.inject.Provider;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

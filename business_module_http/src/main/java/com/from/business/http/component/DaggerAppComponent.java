@@ -4,9 +4,8 @@ import android.app.Application;
 
 import com.from.business.http.HttpHandler;
 import com.from.business.http.cache.Cache;
-import com.from.business.http.dagger.DoubleCheck;
-import com.from.business.http.dagger.InstanceFactory;
-import com.from.business.http.dagger.Provider;
+import dagger.internal.DoubleCheck;
+import dagger.internal.InstanceFactory;
 import com.from.business.http.integration.IRepositoryManager;
 import com.from.business.http.integration.RepositoryManager;
 import com.from.business.http.log.FormatPrinter;
@@ -38,12 +37,14 @@ import com.from.business.http.module.http.HttpConfigModuleRetrofitConfigurationF
 import com.from.business.http.module.http.HttpConfigModuleRxCacheConfigurationFactory;
 import com.from.business.http.module.http.HttpConfigModuleOkhttpConfigurationFactory;
 import com.from.business.http.module.RepositoryManagerFactory;
-import com.from.business.http.utils.Preconditions;
+import dagger.internal.Preconditions;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+
+import javax.inject.Provider;
 
 import io.rx_cache2.internal.RxCache;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;

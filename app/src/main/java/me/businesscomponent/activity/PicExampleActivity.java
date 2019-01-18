@@ -1,9 +1,8 @@
-package me.businesscomponent.example;
+package me.businesscomponent.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -13,7 +12,6 @@ import com.from.view.picture.imageloader.GlideImageLoader;
 
 import java.util.List;
 
-import me.businesscomponent.MainActivity;
 import me.businesscomponent.R;
 
 import static me.businesscomponent.MainActivity.SELECT_IMAGE;

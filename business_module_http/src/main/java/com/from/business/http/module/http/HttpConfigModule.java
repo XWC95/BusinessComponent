@@ -32,7 +32,7 @@ import com.from.business.http.log.RequestInterceptor;
 import com.from.business.http.module.AppModule;
 import com.from.business.http.module.ClientModule;
 import com.from.business.http.utils.DataHelper;
-import com.from.business.http.utils.Preconditions;
+import dagger.internal.Preconditions;
 
 import java.io.File;
 import java.util.ArrayList;

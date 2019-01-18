@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import me.businesscomponent.example.HttpExampleActivity;
-import me.businesscomponent.example.PicExampleActivity;
+import me.businesscomponent.activity.HttpExampleActivity;
+import me.businesscomponent.activity.PicExampleActivity;
 
 /**
  * @author Vea

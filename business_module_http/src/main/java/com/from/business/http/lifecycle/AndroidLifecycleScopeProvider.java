@@ -19,10 +19,6 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 
 import com.uber.autodispose.OutsideScopeException;
-import com.uber.autodispose.lifecycle.CorrespondingEventsFunction;
-import com.uber.autodispose.lifecycle.LifecycleEndedException;
-import com.uber.autodispose.lifecycle.LifecycleScopeProvider;
-import com.uber.autodispose.lifecycle.LifecycleScopes;
 
 import io.reactivex.CompletableSource;
 import io.reactivex.Observable;

@@ -19,21 +19,11 @@ dependencies {
     }
     api(rootProject.ext.dependencies["rxcache2"]) {
         exclude module: 'rxjava'
-        exclude module: 'dagger'
+//        exclude module: 'dagger'
         exclude module: 'api'
     }
     implementation(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
         exclude module: 'gson'
-    }
-    api(rootProject.ext.dependencies["rxlifecycle2"]) {
-        exclude module: 'rxjava'
-        exclude module: 'jsr305'
-    }
-    api(rootProject.ext.dependencies["rxlifecycle2-android"]) {
-        exclude module: 'support-annotations'
-        exclude module: 'rxjava'
-        exclude module: 'rxandroid'
-        exclude module: 'rxlifecycle'
     }
     api(rootProject.ext.dependencies["rxpermissions2"]) {
         exclude module: 'rxjava'
@@ -61,6 +51,5 @@ dependencies {
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["gson"]
     api 'com.uber.autodispose:autodispose-android:1.1.0'
-    api'com.uber.autodispose:autodispose-android-archcomponents:1.1.0'
-
+    implementation "javax.inject:javax.inject:1"
 }
