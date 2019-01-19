@@ -6,6 +6,7 @@ import javax.inject.Provider;
 
 import dagger.internal.Factory;
 
+
 public final class RequestInterceptorFactory implements Factory<RequestInterceptor> {
     private final Provider<HttpHandler> mHandlerProvider;
     private final Provider<FormatPrinter> mPrinterProvider;

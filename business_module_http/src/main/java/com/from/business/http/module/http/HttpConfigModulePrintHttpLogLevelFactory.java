@@ -2,7 +2,7 @@ package com.from.business.http.module.http;
 
 import dagger.internal.Factory;
 import com.from.business.http.log.RequestInterceptor;
-import dagger.internal.Preconditions;
+import com.from.business.http.utils.Preconditions;
 
 public final class HttpConfigModulePrintHttpLogLevelFactory
     implements Factory<RequestInterceptor.Level> {

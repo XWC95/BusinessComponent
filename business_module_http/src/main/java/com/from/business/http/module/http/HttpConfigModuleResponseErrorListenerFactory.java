@@ -1,7 +1,8 @@
 package com.from.business.http.module.http;
 
 import dagger.internal.Factory;
-import dagger.internal.Preconditions;
+import com.from.business.http.utils.Preconditions;
+
 
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 

@@ -6,6 +6,7 @@ import javax.inject.Provider;
 
 import dagger.MembersInjector;
 
+
 public final class RequestInterceptorMembersInjector
     implements MembersInjector<RequestInterceptor> {
     private final Provider<HttpHandler> mHandlerProvider;

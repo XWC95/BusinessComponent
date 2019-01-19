@@ -1,7 +1,8 @@
 package com.from.business.http.module;
 
 import dagger.internal.Factory;
-import dagger.internal.Preconditions;
+import com.from.business.http.utils.Preconditions;
+
 
 import retrofit2.Retrofit;
 

@@ -6,9 +6,10 @@ import com.from.business.http.cache.Cache;
 
 import javax.inject.Provider;
 
-import dagger.Lazy;
 import dagger.internal.DoubleCheck;
+import dagger.Lazy;
 import dagger.MembersInjector;
+
 
 import io.rx_cache2.internal.RxCache;
 import retrofit2.Retrofit;

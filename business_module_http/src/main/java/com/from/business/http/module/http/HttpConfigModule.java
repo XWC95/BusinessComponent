@@ -32,7 +32,6 @@ import com.from.business.http.log.RequestInterceptor;
 import com.from.business.http.module.AppModule;
 import com.from.business.http.module.ClientModule;
 import com.from.business.http.utils.DataHelper;
-import dagger.internal.Preconditions;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,6 +46,8 @@ import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.internal.Util;
+
+import static com.from.business.http.utils.Preconditions.checkNotNull;
 
 /**
  * ================================================
@@ -225,7 +226,7 @@ public class HttpConfigModule {
         }
 
         public Builder baseurl(BaseUrl baseUrl) {
-            this.baseUrl = Preconditions.checkNotNull(baseUrl, BaseUrl.class.getCanonicalName() + "can not be null.");
+            this.baseUrl = checkNotNull(baseUrl, BaseUrl.class.getCanonicalName() + "can not be null.");
             return this;
         }
 
@@ -272,12 +273,12 @@ public class HttpConfigModule {
         }
 
         public Builder printHttpLogLevel(RequestInterceptor.Level printHttpLogLevel) {//是否让框架打印 Http 的请求和响应信息
-            this.printHttpLogLevel = Preconditions.checkNotNull(printHttpLogLevel, "The printHttpLogLevel can not be null, use RequestInterceptor.Level.NONE instead.");
+            this.printHttpLogLevel = checkNotNull(printHttpLogLevel, "The printHttpLogLevel can not be null, use RequestInterceptor.Level.NONE instead.");
             return this;
         }
 
         public Builder formatPrinter(FormatPrinter formatPrinter) {
-            this.formatPrinter = Preconditions.checkNotNull(formatPrinter, FormatPrinter.class.getCanonicalName() + "can not be null.");
+            this.formatPrinter = checkNotNull(formatPrinter, FormatPrinter.class.getCanonicalName() + "can not be null.");
             return this;
         }
 
