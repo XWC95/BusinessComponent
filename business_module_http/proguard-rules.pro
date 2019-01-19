@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-if class com.from.business.http.lifecycle.LifecycleEventsObservable.ArchLifecycleObserver {
+    <init>(...);
+}
+-keep class com.from.business.http.lifecycle.LifecycleEventsObservable_ArchLifecycleObserver_LifecycleAdapter {
+    <init>(...);
+}

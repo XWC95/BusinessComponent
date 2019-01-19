@@ -1,9 +1,11 @@
 package com.from.business.http.module;
 
 import com.from.business.http.cache.Cache;
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
+import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
+
+import javax.inject.Provider;
+
 
 public final class AppModuleProvideExtrasFactory implements Factory<Cache<String, Object>> {
     private final Provider<Cache.Factory> cacheFactoryProvider;

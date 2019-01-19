@@ -2,10 +2,12 @@ package com.from.business.http.module;
 
 import android.app.Application;
 
-import com.from.business.http.dagger.Factory;
-import com.from.business.http.dagger.Provider;
+import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 import com.google.gson.Gson;
+
+import javax.inject.Provider;
+
 
 public final class AppModuleProvideGsonFactory implements Factory<Gson> {
     private final Provider<Application> applicationProvider;

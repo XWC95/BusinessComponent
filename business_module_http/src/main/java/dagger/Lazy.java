@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.from.business.http.dagger;
+package dagger;
 
 /**
  * A handle to a lazily-computed value. Each {@code Lazy} computes its value on

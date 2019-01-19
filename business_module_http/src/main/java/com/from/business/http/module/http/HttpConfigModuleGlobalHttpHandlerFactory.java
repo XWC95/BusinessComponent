@@ -3,7 +3,7 @@ package com.from.business.http.module.http;
 import android.support.annotation.Nullable;
 
 import com.from.business.http.HttpHandler;
-import com.from.business.http.dagger.Factory;
+import dagger.internal.Factory;
 
 public final class HttpConfigModuleGlobalHttpHandlerFactory
     implements Factory<HttpHandler> {

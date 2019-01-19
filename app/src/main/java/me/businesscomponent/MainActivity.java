@@ -1,15 +1,12 @@
 package me.businesscomponent;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.from.view.picture.PictureSelector;
-import com.from.view.picture.imageloader.GlideImageLoader;
-
-import java.util.List;
+import me.businesscomponent.activity.HttpExampleActivity;
+import me.businesscomponent.activity.PicExampleActivity;
 
 /**
  * @author Vea
@@ -22,26 +19,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PictureSelector.with(MainActivity.this)
-                    .selectSpec()
-                    .setMaxSelectImage(6)
-                    .setOpenCamera(true)
-                    .setImageLoader(new GlideImageLoader())
-                    .setSpanCount(3)
-                    .startForResult(SELECT_IMAGE);
-            }
-        });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == SELECT_IMAGE) {
-            List<String> paths = PictureSelector.obtainPathResult(data);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnPicDemo:
+                startActivity(new Intent(this,PicExampleActivity.class));
+                break;
+            case R.id.btnHttpDemo:
+                startActivity(new Intent(this,HttpExampleActivity.class));
+                break;
+            default:
+                break;
         }
     }
 }

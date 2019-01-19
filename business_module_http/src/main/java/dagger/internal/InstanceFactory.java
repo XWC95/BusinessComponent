@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.from.business.http.dagger;
+package dagger.internal;
 
+import dagger.Lazy;
 import com.from.business.http.utils.Preconditions;
 
 

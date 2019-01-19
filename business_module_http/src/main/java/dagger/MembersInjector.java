@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.from.business.http.dagger;
+package dagger;
 
 /**
  * Injects dependencies into the fields and methods on instances of type {@code T}. Ignores the

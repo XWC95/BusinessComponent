@@ -16,6 +16,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    configurations {
+        all*.exclude module: 'androidx'
+    }
 }
 
 dependencies {
@@ -31,9 +38,10 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$support_version"
     implementation "com.android.support:design:$support_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    implementation project(':view_module_photoview')
-    implementation project(':view_module_picture')
-    implementation project(':view_module_refresh')
-    implementation project(':view_module_swipeback')
-    implementation project(':business_module_http')
+    api project(':view_module_photoview')
+    api project(':view_module_picture')
+    api project(':view_module_refresh')
+    api project(':view_module_swipeback')
+    api project(':business_module_http')
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

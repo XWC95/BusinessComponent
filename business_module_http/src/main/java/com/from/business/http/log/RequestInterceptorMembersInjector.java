@@ -1,8 +1,11 @@
 package com.from.business.http.log;
 
 import com.from.business.http.HttpHandler;
-import com.from.business.http.dagger.MembersInjector;
-import com.from.business.http.dagger.Provider;
+
+import javax.inject.Provider;
+
+import dagger.MembersInjector;
+
 
 public final class RequestInterceptorMembersInjector
     implements MembersInjector<RequestInterceptor> {

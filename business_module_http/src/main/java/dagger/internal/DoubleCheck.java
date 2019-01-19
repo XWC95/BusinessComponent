@@ -13,9 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.from.business.http.dagger;
+package dagger.internal;
 
+import dagger.Lazy;
 import com.from.business.http.utils.Preconditions;
+
+import javax.inject.Provider;
+
 
 /**
  * A {@link Lazy} and {@link Provider} implementation that memoizes the value returned from a
