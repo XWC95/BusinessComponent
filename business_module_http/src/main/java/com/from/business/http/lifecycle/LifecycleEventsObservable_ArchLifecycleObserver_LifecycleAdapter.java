@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 package com.from.business.http.lifecycle;
 
 import android.arch.lifecycle.GeneratedAdapter;

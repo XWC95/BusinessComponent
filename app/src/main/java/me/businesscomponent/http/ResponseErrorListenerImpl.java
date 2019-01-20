@@ -20,7 +20,6 @@ import timber.log.Timber;
  * ================================================
  * 展示 {@link ResponseErrorListener} 的用法
  * <p>
- * Created by JessYan on 04/09/2017 17:18
  * ================================================
  */
 public class ResponseErrorListenerImpl implements ResponseErrorListener {
