@@ -1,39 +1,33 @@
-# businessComponent
+# BusinessComponent
 
-#### 介绍
-{**以下是码云平台说明，您可以替换此简介**
-码云是开源中国推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
-
-#### 软件架构
-软件架构说明
+### 介绍
+整理 Android 最需要的 Lib 库，本着单一，less is more 原则。构建 Android 开发基础建设
 
 
-#### 安装教程
+### library 说明
 
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
+1. [http 网络加载库 business_module_http](https://github.com/xwc520/BusinessComponent/tree/master/business_module_http)
+2. [photoView](https://github.com/xwc520/BusinessComponent/tree/master/view_module_photoview)
+3. [刷新和加载更多 view_module_refresh](https://github.com/xwc520/BusinessComponent/tree/master/view_module_refresh)
+4. [0侵入侧滑返回 view_module_swipeback](https://github.com/xwc520/BusinessComponent/tree/master/view_module_swipeback)
+5. [高仿微信图片选择 view_module_picture](https://github.com/xwc520/BusinessComponent/tree/master/view_module_picture)
 
 #### 参与贡献
+1. [Vea](https://github.com/xwc520)
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+## License
+```
+ Copyright 2018, Vea
 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-#### 码云特技
+       http://www.apache.org/licenses/LICENSE-2.0
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
