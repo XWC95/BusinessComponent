@@ -44,4 +44,5 @@ dependencies {
     api project(':view_module_swipeback')
     api project(':business_module_http')
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.uber.autodispose:autodispose-android:1.1.0'
 }

@@ -1,9 +1,11 @@
-package me.businesscomponent.http;
+package com.from.business.http;
 
 import android.content.Context;
 import android.net.ParseException;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.from.business.http.utils.LogUtils;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 
@@ -14,7 +16,6 @@ import java.net.UnknownHostException;
 
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import retrofit2.HttpException;
-import timber.log.Timber;
 
 /**
  * ================================================
@@ -25,7 +26,7 @@ import timber.log.Timber;
 public class ResponseErrorListenerImpl implements ResponseErrorListener {
     @Override
     public void handleResponseError(Context context, Throwable t) {
-        Timber.tag("Catch-Error").w(t.getMessage());
+        LogUtils.debugInfo("Catch-Error",t.getMessage());
         //这里不光只能打印错误, 还可以根据不同的错误做出不同的逻辑处理
         //这里只是对几个常用错误进行简单的处理, 展示这个类的用法, 在实际开发中请您自行对更多错误进行更严谨的处理
         String msg = "未知错误";

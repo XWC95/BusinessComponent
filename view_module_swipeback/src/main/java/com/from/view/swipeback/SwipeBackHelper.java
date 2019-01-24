@@ -49,7 +49,7 @@ public class SwipeBackHelper {
         initSwipeBackFinish();
     }
 
-    public static void Create(Activity activity) {
+    public static void bingOf(Activity activity) {
         new SwipeBackHelper(activity);
     }
 

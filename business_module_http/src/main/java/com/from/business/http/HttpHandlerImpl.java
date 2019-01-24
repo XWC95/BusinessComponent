@@ -1,10 +1,8 @@
-package me.businesscomponent.http;
+package com.from.business.http;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import com.from.business.http.HttpHandler;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -37,7 +35,7 @@ public class HttpHandlerImpl implements HttpHandler {
     public Response onHttpResultResponse(@Nullable String httpResult, @NonNull Interceptor.Chain chain, @NonNull Response response) {
 //        if (!TextUtils.isEmpty(httpResult) && RequestInterceptor.isJson(response.body().contentType())) {
 //            try {
-//                List<User> list = ArmsUtils.obtainAppComponentFromContext(context).gson().fromJson(httpResult, new TypeToken<List<User>>() {
+//                List<User> list = ArmsUtils.obtainAppComponent(context).gson().fromJson(httpResult, new TypeToken<List<User>>() {
 //                }.getType());
 //                User user = list.get(0);
 //                LogUtils.debugLongInfo("Result ------> " + user.getLogin() + "    ||   Avatar_url------> " + user.getAvatarUrl());

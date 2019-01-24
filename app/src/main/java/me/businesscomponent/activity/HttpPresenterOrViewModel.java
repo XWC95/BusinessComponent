@@ -35,7 +35,7 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
     private final AppComponent appComponent;
 
     public HttpPresenterOrViewModel(Application application) {
-        appComponent = HttpModuleUtils.obtainAppComponentFromContext(application);
+        appComponent = HttpModuleUtils.obtainAppComponent(application);
         mRepositoryManager = appComponent.repositoryManager();
     }
 

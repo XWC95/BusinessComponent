@@ -58,7 +58,7 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
                 }
             }
         }
-        SwipeBackHelper.Create(activity);
+        SwipeBackHelper.bingOf(activity);
 
 //        activity.getWindow().getDecorView().post(new Runnable() {
 //            @Override

@@ -17,7 +17,7 @@ import okhttp3.OkHttpClient;
 
 /**
  * ================================================
- * 可通过 {@link HttpModuleUtils#obtainAppComponentFromContext(Context)} 拿到此接口的实现类
+ * 可通过 {@link HttpModuleUtils#obtainAppComponent(Context)} 拿到此接口的实现类
  * 拥有此接口的实现类即可调用对应的方法拿到 Dagger 提供的对应实例
  *
  * ================================================
