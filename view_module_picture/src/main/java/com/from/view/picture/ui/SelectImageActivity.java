@@ -410,6 +410,7 @@ public class SelectImageActivity extends AppCompatActivity implements ImagesAdap
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mImageRv.clearOnScrollListeners();
         mSelectImageItem.setOnImageSelectUpdateListener(null);
     }
 }
