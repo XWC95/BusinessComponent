@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -106,14 +107,16 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void bindImagesViewHolder(final RecyclerView.ViewHolder viewHolder) {
         final ImagesViewHolder imagesViewHolder = (ImagesViewHolder) viewHolder;
         if (null != mOnImageSelectListener) {
-            imagesViewHolder.mSuperCheckBox.setOnClickListener(new View.OnClickListener() {
+            imagesViewHolder.mFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    imagesViewHolder.mSuperCheckBox.setChecked(!imagesViewHolder.mSuperCheckBox.isChecked());
                     if (mSelectItemBean.getSelectCount() >= mSelectorSpec.getMaxSelectImage() && imagesViewHolder.mSuperCheckBox.isChecked()) {
                         imagesViewHolder.mSuperCheckBox.setChecked(false);
                         String maxSelect = String.format(mContext.getString(R.string.maven_picture_max_select_image), String.valueOf(mSelectorSpec.getMaxSelectImage()));
                         Toast.makeText(mContext, maxSelect, Toast.LENGTH_LONG).show();
                     } else {
+
                         mOnImageSelectListener.onImageSelect(imagesViewHolder.mSuperCheckBox, viewHolder.getLayoutPosition());
                     }
                 }
@@ -187,16 +190,24 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    private static class ImagesViewHolder extends RecyclerView.ViewHolder {
+    private class ImagesViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
         SuperCheckBox mSuperCheckBox;
         View mMaskView;
-
+        FrameLayout mFrameLayout;
         ImagesViewHolder(@NonNull View itemView) {
             super(itemView);
             mSuperCheckBox = itemView.findViewById(R.id.checkbox);
             mImage = itemView.findViewById(R.id.image);
             mMaskView = itemView.findViewById(R.id.mask);
+            mFrameLayout = itemView.findViewById(R.id.fl_container);
+
+            //设置点击面积为1/4
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mFrameLayout.getLayoutParams();
+            int width = getImageResize(mContext) / 4;
+            layoutParams.width = width;
+            layoutParams.height = width;
+            mFrameLayout.setLayoutParams(layoutParams);
         }
     }
 }

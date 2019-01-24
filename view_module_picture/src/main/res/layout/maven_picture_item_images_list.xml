@@ -18,14 +18,20 @@
         android:background="#88000000"
         android:visibility="gone" />
 
-    <com.from.view.picture.weight.SuperCheckBox
-        android:id="@+id/checkbox"
-        style="@style/maven_picture_SuperCheckboxTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:paddingTop="20dp"
-        android:paddingRight="10dp"
-        android:src="@drawable/maven_picture_checkbox_normal" />
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right">
 
+
+        <com.from.view.picture.weight.SuperCheckBox
+            android:id="@+id/checkbox"
+            style="@style/maven_picture_SuperCheckboxTheme"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right"
+            android:clickable="false"
+            android:src="@drawable/maven_picture_checkbox_normal" />
+    </FrameLayout>
 </com.from.view.picture.weight.SquareFrameLayout>
