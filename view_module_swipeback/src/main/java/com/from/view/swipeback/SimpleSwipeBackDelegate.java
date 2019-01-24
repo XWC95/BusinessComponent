@@ -1,10 +1,9 @@
 package com.from.view.swipeback;
 
 public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
+    private SwipeBackHelper mSwipeBackHelper;
 
-    private  SwipeBackHelper mSwipeBackHelper;
-
-    public SimpleSwipeBackDelegate( SwipeBackHelper swipeBackHelper) {
+    public SimpleSwipeBackDelegate(SwipeBackHelper swipeBackHelper) {
         mSwipeBackHelper = swipeBackHelper;
     }
 
@@ -41,5 +40,4 @@ public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
     public void onSwipeBackLayoutExecuted() {
         mSwipeBackHelper.swipeBackward();
     }
-
 }
