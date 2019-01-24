@@ -14,6 +14,7 @@
 
 #### 参与贡献
 1. [Vea](https://github.com/xwc520)
+2. [MichaelJokAr](https://github.com/MichaelJokAr)
 
 ## License
 ```

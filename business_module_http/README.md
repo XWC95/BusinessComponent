@@ -36,7 +36,6 @@
 ```
 implementation 'com.from.business.http:business_module_http:0.0.8'
 implementation 'com.uber.autodispose:autodispose-android:1.1.0'
-
 ```
 代码可参考[HttpPresenterOrViewModel](https://github.com/xwc520/BusinessComponent/blob/master/app/src/main/java/me/businesscomponent/activity/HttpPresenterOrViewModel.java)
 ```

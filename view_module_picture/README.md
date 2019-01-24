@@ -4,13 +4,14 @@
 高仿微信的图片选择库
 
 #### 使用
-引入 Module 或 gradle
+1.引入 Module 或 gradle
 ```
 implementation 'com.from.view.photoview:view_module_photoview:1.0.0'
 implementation 'com.from.view.picture:view_module_picture:1.0.0'
 
 ```
 代码可参考[PicExampleActivity](https://github.com/xwc520/BusinessComponent/blob/master/app/src/main/java/me/businesscomponent/activity/PicExampleActivity.java)
+
 ```
     @Override
     public void onClick(View v) {
