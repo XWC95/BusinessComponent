@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.from.business.http.component.AppComponent;
 import com.from.business.http.retrofiturlmanager.RetrofitUrlManager;
-import com.from.business.http.utils.HttpModuleUtils;
 import com.uber.autodispose.AutoDisposeConverter;
 
 import me.businesscomponent.BaseApplication;
@@ -31,9 +29,7 @@ public class HttpExampleActivity extends AppCompatActivity {
 
         RetrofitUrlManager.getInstance().putDomain(GANK_DOMAIN_NAME, GANK_DOMAIN);
 
-        AppComponent appComponent = HttpModuleUtils.obtainAppComponent(this);
-
-        pm = new HttpPresenterOrViewModel(appComponent.application());
+        pm = new HttpPresenterOrViewModel();
         pm.setLifecycle(getLifecycle());
 
         pm.getUserList(false);

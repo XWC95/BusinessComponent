@@ -56,7 +56,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-public final class DaggerAppComponent implements AppComponent {
+public final class DaggerHttpComponent implements HttpComponent {
     private Application application;
     private Provider<Application> applicationProvider;
     private Provider<ClientModule.RetrofitConfiguration> provideRetrofitConfigurationProvider;
@@ -84,11 +84,11 @@ public final class DaggerAppComponent implements AppComponent {
     private Provider<RxErrorHandler> proRxErrorHandlerProvider;
     private Provider<Cache<String, Object>> provideExtrasProvider;
 
-    private DaggerAppComponent(Builder builder) {
+    private DaggerHttpComponent(Builder builder) {
         initialize(builder);
     }
 
-    public static AppComponent.Builder builder() {
+    public static HttpComponent.Builder builder() {
         return new Builder();
     }
 
@@ -245,12 +245,12 @@ public final class DaggerAppComponent implements AppComponent {
         return provideExecutorServiceProvider.get();
     }
 
-    private static final class Builder implements AppComponent.Builder {
+    private static final class Builder implements HttpComponent.Builder {
         private HttpConfigModule globalConfigModule;
         private Application application;
 
         @Override
-        public AppComponent build() {
+        public HttpComponent build() {
             if (globalConfigModule == null) {
                 throw new IllegalStateException(
                     HttpConfigModule.class.getCanonicalName() + " must be set");
@@ -258,7 +258,7 @@ public final class DaggerAppComponent implements AppComponent {
             if (application == null) {
                 throw new IllegalStateException(Application.class.getCanonicalName() + " must be set");
             }
-            return new DaggerAppComponent(this);
+            return new DaggerHttpComponent(this);
         }
 
         @Override

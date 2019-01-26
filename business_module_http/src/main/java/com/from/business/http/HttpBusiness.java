@@ -3,10 +3,11 @@ package com.from.business.http;
 import android.app.Application;
 import android.content.Context;
 
-import com.from.business.http.component.AppComponent;
-import com.from.business.http.component.DaggerAppComponent;
+import com.from.business.http.component.HttpComponent;
+import com.from.business.http.component.DaggerHttpComponent;
 import com.from.business.http.module.http.HttpConfigModule;
 import com.from.business.http.retrofiturlmanager.RetrofitUrlManager;
+import com.from.business.http.utils.LogUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,29 +15,41 @@ import java.util.concurrent.TimeUnit;
  * @author Vea
  * @since 2019-01-24
  */
-public class HttpBusiness {
-    public static AppComponent init(Application application, String baseUrl) {
-        return DaggerAppComponent
-            .builder()
-            .application(application)//提供application
-            .globalConfigModule(HttpBusiness.getDefHttpConfigModule(application, baseUrl))
-            .build();
+public final class HttpBusiness {
+    private volatile static HttpComponent instance = null;
+    private volatile static boolean hasInit = false;
+
+    private HttpBusiness() {
     }
 
-    public static AppComponent init(Application application) {
-        return DaggerAppComponent
-            .builder()
-            .application(application)//提供application
-            .globalConfigModule(HttpBusiness.getDefHttpConfigModule(application, "https://api.github.com"))
-            .build();
+    public static void init(Application application, String baseUrl) {
+        init(application, getDefHttpConfigModule(application, baseUrl));
     }
 
-    public static AppComponent init(Application application, HttpConfigModule config) {
-        return DaggerAppComponent
-            .builder()
-            .application(application)//提供application
-            .globalConfigModule(config)
-            .build();
+    public static void init(Application application, HttpConfigModule config) {
+        if (!hasInit) {
+            if (instance == null) {
+                synchronized (HttpBusiness.class) {
+                    if (instance == null) {
+                        instance = DaggerHttpComponent
+                            .builder()
+                            .application(application)
+                            .globalConfigModule(config)
+                            .build();
+                    }
+                }
+            }
+            hasInit = true;
+            LogUtils.debugInfo("HttpBusiness init over.");
+        }
+    }
+
+    public static HttpComponent getHttpComponent() {
+        if (!hasInit) {
+            throw new RuntimeException("HttpBusiness::Init::Invoke init(context) first!");
+        } else {
+            return instance;
+        }
     }
 
     /**

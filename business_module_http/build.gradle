@@ -43,6 +43,6 @@ dependencies {
     }
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["gson"]
+    api "javax.inject:javax.inject:1"
     compileOnly 'com.uber.autodispose:autodispose-android:1.1.0'
-    compileOnly "javax.inject:javax.inject:1"
 }

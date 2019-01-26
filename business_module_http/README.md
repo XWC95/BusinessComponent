@@ -23,18 +23,16 @@
 
 #### 特点
 - 可以动态切换任意一个 BaseUrl
-- 可以打印参数与返回值
-- 能添加自定义拦截器
-- 统一处理网络请求发生的错误
-- 支持设置缓存
 - 绑定生命周期解决内存泄漏
-- 延迟到发送第一次请求时初始化相关类
-- 支持定义重试
+- 支持缓存
+- 自定义拦截器
+- 自定义重试
+- 统一处理网络请求发生的错误
 
 #### 使用
 引入 Module 或 gradle
 ```
-implementation 'com.from.business.http:business_module_http:0.0.8'
+implementation 'com.from.business.http:business_module_http:0.0.9'
 implementation 'com.uber.autodispose:autodispose-android:1.1.0'
 ```
 代码可参考[HttpPresenterOrViewModel](https://github.com/xwc520/BusinessComponent/blob/master/app/src/main/java/me/businesscomponent/activity/HttpPresenterOrViewModel.java)
@@ -51,7 +49,7 @@ implementation 'com.uber.autodispose:autodispose-android:1.1.0'
                 })
                 // 绑定生命周期
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(checkNotNull(mLifecycle))))
-                .subscribe(new ErrorHandleSubscriber<Reply<List<User>>>(appComponent.rxErrorHandler()) {
+                .subscribe(new ErrorHandleSubscriber<Reply<List<User>>>(mHttp.rxErrorHandler()) {
                     @Override
                     public void onNext(Reply<List<User>> listReply) {
                         Toast.makeText(appComponent.application(), listReply.getData().size() + "", Toast.LENGTH_SHORT).show();

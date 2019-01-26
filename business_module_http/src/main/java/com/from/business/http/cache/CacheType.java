@@ -5,7 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.from.business.http.component.AppComponent;
+import com.from.business.http.component.HttpComponent;
 import com.from.business.http.integration.RepositoryManager;
 
 /**
@@ -69,7 +69,7 @@ public interface CacheType {
     };
 
     /**
-     * {@link AppComponent} 中的 extras
+     * {@link HttpComponent} 中的 extras
      */
     CacheType EXTRAS = new CacheType() {
         private static final int MAX_SIZE = 500;

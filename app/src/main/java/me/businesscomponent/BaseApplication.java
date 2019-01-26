@@ -1,11 +1,8 @@
 package me.businesscomponent;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
 
 import com.from.business.http.HttpBusiness;
-import com.from.business.http.IAppComponent;
-import com.from.business.http.component.AppComponent;
 import com.from.view.swipeback.SwipeBackHelper;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -16,9 +13,8 @@ import timber.log.Timber;
  * @author Vea
  * @since 2019-01
  */
-public class BaseApplication extends Application implements IAppComponent {
+public class BaseApplication extends Application {
     public static String TAG = "HttpX";
-    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
@@ -43,12 +39,6 @@ public class BaseApplication extends Application implements IAppComponent {
 
         Timber.plant(new Timber.DebugTree());
 
-        mAppComponent = HttpBusiness.init(this, Api.APP_DOMAIN);
-    }
-
-    @NonNull
-    @Override
-    public AppComponent getAppComponent() {
-        return mAppComponent;
+        HttpBusiness.init(this, Api.APP_DOMAIN);
     }
 }

@@ -1,12 +1,11 @@
 package me.businesscomponent.activity;
 
-import android.app.Application;
 import android.arch.lifecycle.Lifecycle;
 import android.widget.Toast;
 
-import com.from.business.http.component.AppComponent;
+import com.from.business.http.HttpBusiness;
+import com.from.business.http.component.HttpComponent;
 import com.from.business.http.integration.IRepositoryManager;
-import com.from.business.http.utils.HttpModuleUtils;
 
 import java.util.List;
 
@@ -32,11 +31,11 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
 
 
     private final IRepositoryManager mRepositoryManager;
-    private final AppComponent appComponent;
+    private final HttpComponent mHttp;
 
-    public HttpPresenterOrViewModel(Application application) {
-        appComponent = HttpModuleUtils.obtainAppComponent(application);
-        mRepositoryManager = appComponent.repositoryManager();
+    public HttpPresenterOrViewModel() {
+        mHttp = HttpBusiness.getHttpComponent();
+        mRepositoryManager = mHttp.repositoryManager();
     }
 
     public void stop() {
@@ -57,10 +56,10 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
                     //隐藏 loading View
                 })
                 .as(bindLifecycle())
-                .subscribe(new ErrorHandleSubscriber<Reply<List<User>>>(appComponent.rxErrorHandler()) {
+                .subscribe(new ErrorHandleSubscriber<Reply<List<User>>>(mHttp.rxErrorHandler()) {
                     @Override
                     public void onNext(Reply<List<User>> listReply) {
-                        Toast.makeText(appComponent.application(), listReply.getData().size() + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mHttp.application(), listReply.getData().size() + "", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -71,7 +70,7 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
        getCacheService()
                 .getGirlList(getGankService().getGirlList(10, 1),
                         new DynamicKey(1),
-                        new EvictDynamicKey(false))
+                        new EvictDynamicKey(false)) // false 不使用缓存
                 .subscribeOn(Schedulers.io())
                 .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(disposable -> {
@@ -82,10 +81,10 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
 
                 })
                 .as(bindLifecycle())
-                .subscribe(new ErrorHandleSubscriber<Reply<GankBaseResponse<List<GankItemBean>>>>(appComponent.rxErrorHandler()) {
+                .subscribe(new ErrorHandleSubscriber<Reply<GankBaseResponse<List<GankItemBean>>>>(mHttp.rxErrorHandler()) {
                     @Override
                     public void onNext(Reply<GankBaseResponse<List<GankItemBean>>> response) {
-                        Timber.tag(BaseApplication.TAG).d(response.getData().getResults().size() + "结果");
+                        Timber.tag(BaseApplication.TAG).d(response.getData().getResults().toString());
                     }
                 });
     }
@@ -105,6 +104,6 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
         return getCacheService()
                 .getUsers(getUserService().getUsers(1, 10),
                         new DynamicKey(1),
-                        new EvictDynamicKey(update));
+                        new EvictDynamicKey(update)); // true 使用缓存
     }
 }
