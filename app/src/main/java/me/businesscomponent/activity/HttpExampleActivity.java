@@ -32,7 +32,7 @@ public class HttpExampleActivity extends AppCompatActivity {
         pm = new HttpPresenterOrViewModel();
         pm.setLifecycle(getLifecycle());
 
-        pm.getUserList(false);
+        pm.getUserList(false);// false 不更新，使用缓存数据
         pm.getGirlList();
 
     }

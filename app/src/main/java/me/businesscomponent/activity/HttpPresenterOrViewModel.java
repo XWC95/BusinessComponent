@@ -70,7 +70,7 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
        getCacheService()
                 .getGirlList(getGankService().getGirlList(10, 1),
                         new DynamicKey(1),
-                        new EvictDynamicKey(false)) // false 不使用缓存
+                        new EvictDynamicKey(true)) // true 更新，不使用缓存的数据
                 .subscribeOn(Schedulers.io())
                 .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(disposable -> {
@@ -104,6 +104,6 @@ public class HttpPresenterOrViewModel extends BasePresenterOrViewModel {
         return getCacheService()
                 .getUsers(getUserService().getUsers(1, 10),
                         new DynamicKey(1),
-                        new EvictDynamicKey(update)); // true 使用缓存
+                        new EvictDynamicKey(update));
     }
 }
