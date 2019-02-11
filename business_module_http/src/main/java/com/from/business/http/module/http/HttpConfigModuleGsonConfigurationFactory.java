@@ -2,8 +2,9 @@ package com.from.business.http.module.http;
 
 import android.support.annotation.Nullable;
 
-import dagger.internal.Factory;
 import com.from.business.http.module.AppModule;
+
+import dagger.internal.Factory;
 
 public final class HttpConfigModuleGsonConfigurationFactory
     implements Factory<AppModule.GsonConfiguration> {

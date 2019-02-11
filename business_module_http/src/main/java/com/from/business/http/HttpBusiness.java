@@ -3,8 +3,8 @@ package com.from.business.http;
 import android.app.Application;
 import android.content.Context;
 
-import com.from.business.http.component.HttpComponent;
 import com.from.business.http.component.DaggerHttpComponent;
+import com.from.business.http.component.HttpComponent;
 import com.from.business.http.module.http.HttpConfigModule;
 import com.from.business.http.retrofiturlmanager.RetrofitUrlManager;
 import com.from.business.http.utils.LogUtils;

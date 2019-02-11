@@ -2,13 +2,13 @@ package com.from.business.http.module.http;
 
 import android.app.Application;
 
-
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 
 import java.io.File;
 
 import javax.inject.Provider;
+
+import dagger.internal.Factory;
 
 
 public final class HttpConfigModuleCacheFileFactory implements Factory<File> {

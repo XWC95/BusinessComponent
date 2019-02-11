@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.from.business.http" />
+<manifest package="com.from.business.http" />

@@ -1,10 +1,10 @@
 package com.from.business.http.module.http;
 
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 
-
 import java.util.concurrent.ExecutorService;
+
+import dagger.internal.Factory;
 
 public final class HttpConfigModuleExecutorServiceFactory
     implements Factory<ExecutorService> {

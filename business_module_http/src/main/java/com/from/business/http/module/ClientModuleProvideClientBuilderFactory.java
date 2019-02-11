@@ -1,9 +1,8 @@
 package com.from.business.http.module;
 
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 
-
+import dagger.internal.Factory;
 import okhttp3.OkHttpClient;
 
 public final class ClientModuleProvideClientBuilderFactory

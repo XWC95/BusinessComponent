@@ -16,8 +16,9 @@
 
 package dagger.internal;
 
-import dagger.Lazy;
 import com.from.business.http.utils.Preconditions;
+
+import dagger.Lazy;
 
 
 
@@ -37,7 +38,7 @@ public final class InstanceFactory<T> implements Factory<T>, Lazy<T> {
 
   public static <T> Factory<T> createNullable(T instance) {
     return instance == null
-        ? InstanceFactory.<T>nullInstanceFactory()
+        ? InstanceFactory.nullInstanceFactory()
         : new InstanceFactory<T>(instance);
   }
 

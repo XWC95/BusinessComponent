@@ -6,7 +6,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.view.View;
 
-
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class SwipeBackHelper {
     private Delegate mDelegate;
     private SwipeBackLayout mSwipeBackLayout;
 
-    private SwipeBackHelper(){
+    private SwipeBackHelper() {
     }
 
     /**
@@ -30,13 +29,15 @@ public class SwipeBackHelper {
      * @param problemViewClassList 如果发现滑动返回后立即触摸界面时应用崩溃，
      *                             请把该界面里比较特殊的 View 的 class 添加到该集合中，
      *                             目前在库中已经添加了 WebView 和 SurfaceView
-     * @param options             如果有些第三方库 Activity 不需要 swipeBack 可使用Option 配置
+     * @param options              如果有些第三方库 Activity 不需要 swipeBack 可使用Option 配置
+     * @param delegate             侧滑代理，扩展滑动开始和结束事件
      */
-    public static void init(Application application, List<Class<? extends View>> problemViewClassList,SwipeOptions options) {
-        SwipeBackManager.getInstance().init(application, problemViewClassList,options);
+    public static void init(Application application, List<Class<? extends View>> problemViewClassList, SwipeExcludeOptions options, Delegate delegate) {
+        SwipeBackManager.getInstance().init(application, problemViewClassList, options, delegate);
     }
+
     public static void init(Application application) {
-        SwipeBackManager.getInstance().init(application, null,null);
+        SwipeBackManager.getInstance().init(application, null, null, null);
     }
 
     /**
@@ -44,44 +45,57 @@ public class SwipeBackHelper {
      */
     private SwipeBackHelper(Activity activity) {
         mActivity = activity;
-        mDelegate = new SimpleSwipeBackDelegate(this);
 
         initSwipeBackFinish();
     }
 
-    public static void bingOf(Activity activity) {
-        new SwipeBackHelper(activity);
+    public static SwipeBackHelper create(Activity activity) {
+        return new SwipeBackHelper(activity);
+    }
+
+    public void setSlideDelegate(Delegate delegate) {
+        if (delegate != null) {
+            mDelegate = delegate;
+        }
     }
 
     /**
      * 初始化滑动返回
      */
     private void initSwipeBackFinish() {
-        if (mDelegate.isSupportSwipeBack()) {
-            mSwipeBackLayout = new SwipeBackLayout(mActivity);
-            mSwipeBackLayout.attachToActivity(mActivity);
-            mSwipeBackLayout.setPanelSlideListener(new SwipeBackLayout.PanelSlideListener() {
-                @Override
-                public void onPanelSlide(View panel, float slideOffset) {
-                    // 开始滑动返回时关闭软键盘
-                    if (slideOffset < 0.03) {
-                        SwipeBackUtil.closeKeyboard(mActivity);
-                    }
-
+        SwipeExcludeOptions options = SwipeBackManager.getInstance().getOptions();
+        if (options != null && options.getClassNameList().contains(mActivity.getClass().getSimpleName())) {
+            return;
+        }
+        mSwipeBackLayout = new SwipeBackLayout(mActivity);
+        mSwipeBackLayout.attachToActivity(mActivity);
+        mSwipeBackLayout.setPanelSlideListener(new SwipeBackLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                // 开始滑动返回时关闭软键盘
+                if (slideOffset < 0.03) {
+                    SwipeBackUtil.closeKeyboard(mActivity);
+                }
+                if (mDelegate != null) {
                     mDelegate.onSwipeBackLayoutSlide(slideOffset);
                 }
+            }
 
-                @Override
-                public void onPanelOpened(View panel) {
+            @Override
+            public void onPanelOpened(View panel) {
+                swipeBackward();
+                if (mDelegate != null) {
                     mDelegate.onSwipeBackLayoutExecuted();
                 }
+            }
 
-                @Override
-                public void onPanelClosed(View panel) {
+            @Override
+            public void onPanelClosed(View panel) {
+                if (mDelegate != null) {
                     mDelegate.onSwipeBackLayoutCancel();
                 }
-            });
-        }
+            }
+        });
     }
 
     /**
@@ -259,12 +273,6 @@ public class SwipeBackHelper {
     }
 
     public interface Delegate {
-        /**
-         * 是否支持滑动返回
-         *
-         * @return
-         */
-        boolean isSupportSwipeBack();
 
         /**
          * 正在滑动返回

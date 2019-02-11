@@ -2,14 +2,12 @@ package com.from.business.http.module;
 
 import android.app.Application;
 
-
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 import com.google.gson.Gson;
 
-
 import javax.inject.Provider;
 
+import dagger.internal.Factory;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

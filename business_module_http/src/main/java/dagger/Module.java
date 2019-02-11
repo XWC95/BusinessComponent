@@ -16,11 +16,12 @@
 
 package dagger;
 
-import dagger.internal.Beta;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import dagger.internal.Beta;
 
 /**
  * Annotates a class that contributes to the object graph.

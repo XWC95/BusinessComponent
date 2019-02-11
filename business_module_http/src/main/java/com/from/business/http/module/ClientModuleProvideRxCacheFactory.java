@@ -2,16 +2,14 @@ package com.from.business.http.module;
 
 import android.app.Application;
 
-
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 import com.google.gson.Gson;
 
 import java.io.File;
 
-
 import javax.inject.Provider;
 
+import dagger.internal.Factory;
 import io.rx_cache2.internal.RxCache;
 
 public final class ClientModuleProvideRxCacheFactory implements Factory<RxCache> {

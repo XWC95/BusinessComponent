@@ -2,14 +2,16 @@ package com.from.business.http.lifecycle;
 
 import com.uber.autodispose.AutoDisposePlugins;
 import com.uber.autodispose.OutsideScopeException;
+
+import java.util.Comparator;
+import java.util.concurrent.Callable;
+
 import io.reactivex.Completable;
 import io.reactivex.CompletableSource;
 import io.reactivex.Observable;
 import io.reactivex.annotations.Nullable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
-import java.util.Comparator;
-import java.util.concurrent.Callable;
 
 /**
  * Utilities for dealing with {@link LifecycleScopeProvider}s. This includes factories for resolving

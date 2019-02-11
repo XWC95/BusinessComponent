@@ -1,12 +1,12 @@
 package com.from.business.http.lifecycle;
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.Lifecycle.Event;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
-import android.arch.lifecycle.Lifecycle.Event;
 
 import com.uber.autodispose.android.internal.MainThreadDisposable;
 

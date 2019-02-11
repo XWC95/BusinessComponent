@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-
 import java.lang.ref.WeakReference;
 
 
@@ -61,6 +60,7 @@ class SwipeBackShadowView extends FrameLayout {
         });
         mIsCurrentActivityTranslucent = typedArray.getBoolean(0, false);
         typedArray.recycle();
+        updateShadow();
     }
 
     /**

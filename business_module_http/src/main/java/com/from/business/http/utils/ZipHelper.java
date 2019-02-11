@@ -110,7 +110,7 @@ public class ZipHelper {
 
             returnValues = new byte[bytesDecompressedSoFar.size()];
             for (int b = 0; b < returnValues.length; b++) {
-                returnValues[b] = (byte) (bytesDecompressedSoFar.get(b));
+                returnValues[b] = bytesDecompressedSoFar.get(b);
             }
 
         } catch (DataFormatException dfe) {

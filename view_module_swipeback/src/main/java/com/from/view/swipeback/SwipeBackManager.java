@@ -23,7 +23,8 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private static final SwipeBackManager sInstance = new SwipeBackManager();
     private Stack<Activity> mActivityStack = new Stack<>();
     private Set<Class<? extends View>> mProblemViewClassSet = new HashSet<>();
-    private SwipeOptions mOptions;
+    private SwipeExcludeOptions mOptions;
+    private SwipeBackHelper.Delegate mDelegate;
 
     public static SwipeBackManager getInstance() {
         return sInstance;
@@ -32,7 +33,7 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private SwipeBackManager() {
     }
 
-    public void init(@NonNull Application application, @Nullable List<Class<? extends View>> problemViewClassList, @Nullable SwipeOptions options) {
+    public void init(@NonNull Application application, @Nullable List<Class<? extends View>> problemViewClassList, @Nullable SwipeExcludeOptions options, SwipeBackHelper.Delegate delegate) {
         application.registerActivityLifecycleCallbacks(this);
 
         mProblemViewClassSet.add(WebView.class);
@@ -43,22 +44,29 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
         if (options != null) {
             mOptions = options;
         }
+        if (delegate != null) {
+            this.mDelegate = delegate;
+        }
     }
 
     @Override
     public void onActivityCreated(final Activity activity, Bundle savedInstanceState) {
         SwipeBackUtil.d("SwipeBackManager observe Activity onCreate");
         SwipeBackUtil.d("Activity info : package" + activity.getPackageName() + "___SimpleName：" + activity.getClass().getSimpleName());
+
+
         mActivityStack.add(activity);
         if (mOptions != null) {
             for (String className : mOptions.getClassNameList()) {
                 if (activity.getClass().getSimpleName().equals(className)) {
-                    SwipeBackUtil.d("SwipeBackManager exclude of" + activity.getClass().getSimpleName());
+                    SwipeBackUtil.d("SwipeBackManager exclude of  " + activity.getClass().getSimpleName());
                     return;
                 }
             }
         }
-        SwipeBackHelper.bingOf(activity);
+        SwipeBackHelper swipeBackHelper = SwipeBackHelper.create(activity);
+        swipeBackHelper.setSlideDelegate(mDelegate);
+
 
 //        activity.getWindow().getDecorView().post(new Runnable() {
 //            @Override
@@ -145,5 +153,9 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
      */
     public boolean isProblemView(View view) {
         return mProblemViewClassSet.contains(view.getClass());
+    }
+
+    public SwipeExcludeOptions getOptions() {
+        return mOptions;
     }
 }

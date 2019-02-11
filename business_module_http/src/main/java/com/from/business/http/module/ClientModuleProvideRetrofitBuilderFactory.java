@@ -1,9 +1,8 @@
 package com.from.business.http.module;
 
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 
-
+import dagger.internal.Factory;
 import retrofit2.Retrofit;
 
 public final class ClientModuleProvideRetrofitBuilderFactory implements Factory<Retrofit.Builder> {

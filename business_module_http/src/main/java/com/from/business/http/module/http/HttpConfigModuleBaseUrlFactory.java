@@ -1,9 +1,8 @@
 package com.from.business.http.module.http;
 
-import dagger.internal.Factory;
 import com.from.business.http.utils.Preconditions;
 
-
+import dagger.internal.Factory;
 import okhttp3.HttpUrl;
 
 public final class HttpConfigModuleBaseUrlFactory implements Factory<HttpUrl> {

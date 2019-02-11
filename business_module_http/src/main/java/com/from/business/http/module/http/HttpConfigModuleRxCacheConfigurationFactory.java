@@ -2,8 +2,9 @@ package com.from.business.http.module.http;
 
 import android.support.annotation.Nullable;
 
-import dagger.internal.Factory;
 import com.from.business.http.module.ClientModule;
+
+import dagger.internal.Factory;
 
 public final class HttpConfigModuleRxCacheConfigurationFactory
     implements Factory<ClientModule.RxCacheConfiguration> {

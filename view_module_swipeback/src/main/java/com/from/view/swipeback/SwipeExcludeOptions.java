@@ -6,10 +6,10 @@ import java.util.List;
  * @version 0.0.9
  * @since 2019-01
  */
-public class SwipeOptions {
+public class SwipeExcludeOptions {
     private List<String> mClassNameList;
 
-    private SwipeOptions(Builder builder) {
+    private SwipeExcludeOptions(Builder builder) {
         this.mClassNameList = builder.mClassNameList;
     }
 
@@ -32,8 +32,8 @@ public class SwipeOptions {
             return this;
         }
 
-        public SwipeOptions build() {
-            return new SwipeOptions(this);
+        public SwipeExcludeOptions build() {
+            return new SwipeExcludeOptions(this);
         }
     }
 }

@@ -2,12 +2,9 @@ package com.from.business.http.module;
 
 import android.app.Application;
 
-
 import javax.inject.Provider;
 
 import dagger.internal.Factory;
-
-
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 

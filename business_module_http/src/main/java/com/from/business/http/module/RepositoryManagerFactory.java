@@ -3,15 +3,13 @@ package com.from.business.http.module;
 import android.app.Application;
 
 import com.from.business.http.cache.Cache;
-
-import dagger.internal.DoubleCheck;
-import dagger.internal.Factory;
 import com.from.business.http.integration.RepositoryManager;
 import com.from.business.http.integration.RepositoryManager_MembersInjector;
 
-
 import javax.inject.Provider;
 
+import dagger.internal.DoubleCheck;
+import dagger.internal.Factory;
 import io.rx_cache2.internal.RxCache;
 import retrofit2.Retrofit;
 

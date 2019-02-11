@@ -1,21 +1,6 @@
 package com.from.view.swipeback;
 
 public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
-    private SwipeBackHelper mSwipeBackHelper;
-
-    public SimpleSwipeBackDelegate(SwipeBackHelper swipeBackHelper) {
-        mSwipeBackHelper = swipeBackHelper;
-    }
-
-    /**
-     * 是否支持滑动返回。这里在父类中默认返回 true 来支持滑动返回，如果某个界面不想支持滑动返回则重写该方法返回 false 即可
-     *
-     * @return
-     */
-    @Override
-    public boolean isSupportSwipeBack() {
-        return true;
-    }
 
     /**
      * 正在滑动返回
@@ -38,6 +23,5 @@ public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
      */
     @Override
     public void onSwipeBackLayoutExecuted() {
-        mSwipeBackHelper.swipeBackward();
     }
 }

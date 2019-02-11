@@ -3,7 +3,6 @@ package com.from.business.http.cache;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-
 import com.from.business.http.utils.Preconditions;
 
 import java.util.HashMap;

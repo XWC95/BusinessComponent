@@ -10,7 +10,6 @@ import com.from.business.http.utils.UrlEncoderUtils;
 import com.from.business.http.utils.ZipHelper;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -125,10 +124,9 @@ public class RequestInterceptor implements Interceptor {
      * @param response    {@link Response}
      * @param logResponse 是否打印响应结果
      * @return 解析后的响应结果
-     * @throws IOException
      */
     @Nullable
-    private String printResult(Request request, Response response, boolean logResponse) throws IOException {
+    private String printResult(Request request, Response response, boolean logResponse) {
         try {
             //读取服务器返回的结果
             ResponseBody responseBody = response.newBuilder().build().body();
@@ -179,9 +177,8 @@ public class RequestInterceptor implements Interceptor {
      *
      * @param request {@link Request}
      * @return 解析后的请求信息
-     * @throws UnsupportedEncodingException
      */
-    public static String parseParams(Request request) throws UnsupportedEncodingException {
+    public static String parseParams(Request request) {
         try {
             RequestBody body = request.newBuilder().build().body();
             if (body == null) return "";

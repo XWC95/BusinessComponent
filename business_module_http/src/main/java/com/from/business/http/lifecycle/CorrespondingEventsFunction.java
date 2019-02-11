@@ -1,6 +1,7 @@
 package com.from.business.http.lifecycle;
 
 import com.uber.autodispose.OutsideScopeException;
+
 import io.reactivex.functions.Function;
 
 /**

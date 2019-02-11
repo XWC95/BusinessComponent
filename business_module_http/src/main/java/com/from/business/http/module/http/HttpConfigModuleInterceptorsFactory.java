@@ -2,11 +2,9 @@ package com.from.business.http.module.http;
 
 import android.support.annotation.Nullable;
 
-
-import dagger.internal.Factory;
-
 import java.util.List;
 
+import dagger.internal.Factory;
 import okhttp3.Interceptor;
 
 public final class HttpConfigModuleInterceptorsFactory

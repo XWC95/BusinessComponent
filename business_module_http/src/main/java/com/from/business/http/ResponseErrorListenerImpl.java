@@ -2,7 +2,6 @@ package com.from.business.http;
 
 import android.content.Context;
 import android.net.ParseException;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.from.business.http.utils.LogUtils;

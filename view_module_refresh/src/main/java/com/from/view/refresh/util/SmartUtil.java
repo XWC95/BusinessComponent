@@ -70,7 +70,7 @@ public abstract class SmartUtil {
             }
 
             final int newTop = firstView.getTop() - y;
-            ((ListView) listView).setSelectionFromTop(firstPosition, newTop);
+            listView.setSelectionFromTop(firstPosition, newTop);
         } else {
             listView.smoothScrollBy(y, 0);
         }

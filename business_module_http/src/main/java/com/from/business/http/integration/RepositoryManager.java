@@ -7,14 +7,13 @@ import android.support.annotation.Nullable;
 
 import com.from.business.http.cache.Cache;
 import com.from.business.http.cache.CacheType;
-import dagger.Lazy;
 import com.from.business.http.utils.Preconditions;
-
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import dagger.Lazy;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.rx_cache2.internal.RxCache;
