@@ -1,7 +1,8 @@
 package com.from.view.swipeback;
 
-public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
+import android.app.Activity;
 
+public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
     /**
      * 正在滑动返回
      *
@@ -20,8 +21,11 @@ public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
 
     /**
      * 滑动返回执行完毕，销毁当前 Activity
+     *
+     * @param activity 当前Activity
      */
     @Override
-    public void onSwipeBackLayoutExecuted() {
+    public void onSwipeBackLayoutExecuted(Activity activity) {
+
     }
 }

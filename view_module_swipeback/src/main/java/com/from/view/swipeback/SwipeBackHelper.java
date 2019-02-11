@@ -83,10 +83,10 @@ public class SwipeBackHelper {
 
             @Override
             public void onPanelOpened(View panel) {
-                swipeBackward();
                 if (mDelegate != null) {
-                    mDelegate.onSwipeBackLayoutExecuted();
+                    mDelegate.onSwipeBackLayoutExecuted(mActivity);
                 }
+                swipeBackward();
             }
 
             @Override
@@ -267,13 +267,15 @@ public class SwipeBackHelper {
      * 滑动返回上一个 Activity，并销毁当前 Activity
      */
     public void swipeBackward() {
+        if (mActivity.isFinishing() || mActivity == null) {
+            return;
+        }
         SwipeBackUtil.closeKeyboard(mActivity);
         mActivity.finish();
         executeSwipeBackAnim();
     }
 
     public interface Delegate {
-
         /**
          * 正在滑动返回
          *
@@ -289,6 +291,6 @@ public class SwipeBackHelper {
         /**
          * 滑动返回执行完毕，销毁当前 Activity
          */
-        void onSwipeBackLayoutExecuted();
+        void onSwipeBackLayoutExecuted(Activity activity);
     }
 }

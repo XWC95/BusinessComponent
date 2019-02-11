@@ -1,5 +1,6 @@
 package me.businesscomponent;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.from.business.http.HttpBusiness;
@@ -42,14 +43,13 @@ public class BaseApplication extends Application {
         List<String> exclude = new ArrayList<>();
         exclude.add(SelectImageActivity.class.getSimpleName());
         SwipeExcludeOptions options = SwipeExcludeOptions.builder().exclude(exclude).build();
-        SwipeBackHelper.init(this, null, options, new SimpleSwipeBackDelegate() {
+        SwipeBackHelper.init(this, null, null, new SimpleSwipeBackDelegate() {
+            @Override
+            public void onSwipeBackLayoutExecuted(Activity activity) {
 
-//            @Override
-//            public void onSwipeBackLayoutExecuted() {
-//                super.onSwipeBackLayoutExecuted();
-//            }
+            }
 
-//            @Override
+            //            @Override
 //            public void onSwipeBackLayoutCancel() {
 //                super.onSwipeBackLayoutCancel();
 //            }
