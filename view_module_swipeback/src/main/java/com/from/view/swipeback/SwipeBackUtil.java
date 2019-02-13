@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
@@ -22,7 +23,6 @@ import java.lang.reflect.Method;
  * @since 2019-1
  */
 class SwipeBackUtil {
-
     private SwipeBackUtil() {
     }
 
@@ -116,7 +116,7 @@ class SwipeBackUtil {
     /**
      * 获取屏幕高度，包括底部导航栏
      */
-    public static int getRealScreenHeight(Activity activity) {
+    static int getRealScreenHeight(Activity activity) {
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -131,7 +131,7 @@ class SwipeBackUtil {
     /**
      * 获取屏幕宽度，不包括右侧导航栏
      */
-    public static int getRealScreenWidth(Activity activity) {
+    static int getRealScreenWidth(Activity activity) {
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -148,7 +148,7 @@ class SwipeBackUtil {
      *
      * @param activity
      */
-    public static void closeKeyboard(Activity activity) {
+    static void closeKeyboard(Activity activity) {
         View view = activity.getWindow().peekDecorView();
         if (view != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -156,11 +156,24 @@ class SwipeBackUtil {
         }
     }
 
-
-    public static void d(String message) {
+    static void d(String message) {
         if (BuildConfig.DEBUG) {
             Log.d("SwipeBackX", message);
         }
     }
 
+    static void convertActivityFromTranslucent(Activity activity) {
+        try {
+            TypedArray typedArray = activity.getTheme().obtainStyledAttributes(new int[]{
+                android.R.attr.windowIsTranslucent
+            });
+            if (!typedArray.getBoolean(0, false)) return;
+
+            Method method = Activity.class.getDeclaredMethod("convertFromTranslucent");
+            method.setAccessible(true);
+            method.invoke(activity);
+        } catch (Throwable t) {
+            // pass
+        }
+    }
 }

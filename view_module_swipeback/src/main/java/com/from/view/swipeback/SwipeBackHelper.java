@@ -45,7 +45,6 @@ public class SwipeBackHelper {
      */
     private SwipeBackHelper(Activity activity) {
         mActivity = activity;
-
         initSwipeBackFinish();
     }
 
@@ -213,20 +212,6 @@ public class SwipeBackHelper {
     }
 
     /**
-     * 执行跳转到下一个 Activity 的动画
-     */
-    public void executeForwardAnim() {
-        executeForwardAnim(mActivity);
-    }
-
-    /**
-     * 执行回到到上一个 Activity 的动画
-     */
-    public void executeBackwardAnim() {
-        executeBackwardAnim(mActivity);
-    }
-
-    /**
      * 执行滑动返回到到上一个 Activity 的动画
      */
     public void executeSwipeBackAnim() {
@@ -234,33 +219,10 @@ public class SwipeBackHelper {
     }
 
     /**
-     * 执行跳转到下一个 Activity 的动画。这里弄成静态方法，方便在 Fragment 中调用
-     */
-    public static void executeForwardAnim(Activity activity) {
-        activity.overridePendingTransition(R.anim.maven_swipeback_activity_forward_enter, R.anim.maven_swipeback_activity_forward_exit);
-    }
-
-    /**
-     * 执行回到到上一个 Activity 的动画。这里弄成静态方法，方便在 Fragment 中调用
-     */
-    public static void executeBackwardAnim(Activity activity) {
-        activity.overridePendingTransition(R.anim.maven_swipeback_activity_backward_enter, R.anim.maven_swipeback_activity_backward_exit);
-    }
-
-    /**
      * 执行滑动返回到到上一个 Activity 的动画。这里弄成静态方法，方便在 Fragment 中调用
      */
     public static void executeSwipeBackAnim(Activity activity) {
-        activity.overridePendingTransition(R.anim.maven_swipeback_activity_swipeback_enter, R.anim.maven_swipeback_activity_swipeback_exit);
-    }
-
-    /**
-     * 回到上一个 Activity，并销毁当前 Activity
-     */
-    public void backward() {
-        SwipeBackUtil.closeKeyboard(mActivity);
-        mActivity.finish();
-        executeBackwardAnim();
+        activity.overridePendingTransition(R.anim.maven_swipeback_translucent_enter, R.anim.maven_swipeback_translucent_exit);
     }
 
     /**

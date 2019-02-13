@@ -4,7 +4,6 @@ package com.from.view.swipeback;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +18,8 @@ import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
@@ -33,7 +34,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
@@ -41,6 +41,8 @@ import android.view.accessibility.AccessibilityEvent;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+
+import static com.from.view.swipeback.SwipeBackUtil.convertActivityFromTranslucent;
 
 /**
  * 通过修改 SlidingPaneLayout 实现滑动返回布局
@@ -60,7 +62,7 @@ public class SwipeBackLayout extends ViewGroup {
     /**
      * If no fade color is given by default it will fade to 80% gray.
      */
-    private static final int DEFAULT_FADE_COLOR = 0xcccccccc;
+    private static final int DEFAULT_FADE_COLOR = Color.TRANSPARENT;
     /**
      * The fade color used for the sliding panel. 0 = no fading.
      */
@@ -130,15 +132,13 @@ public class SwipeBackLayout extends ViewGroup {
     boolean mPreservedOpenState;
     private boolean mFirstLayout = true;
     private final Rect mTmpRect = new Rect();
-    final ArrayList<DisableLayerRunnable> mPostedRunnables =
-        new ArrayList<DisableLayerRunnable>();
+    final ArrayList<DisableLayerRunnable> mPostedRunnables = new ArrayList<>();
     static final SlidingPanelLayoutImpl IMPL;
 
     static {
-        final int deviceVersion = Build.VERSION.SDK_INT;
-        if (deviceVersion >= 17) {
+        if (Build.VERSION.SDK_INT >= 17) {
             IMPL = new SlidingPanelLayoutImplJBMR1();
-        } else if (deviceVersion >= 16) {
+        } else if (Build.VERSION.SDK_INT >= 16) {
             IMPL = new SlidingPanelLayoutImplJB();
         } else {
             IMPL = new SlidingPanelLayoutImplBase();
@@ -185,10 +185,10 @@ public class SwipeBackLayout extends ViewGroup {
     void attachToActivity(Activity activity) {
         mActivity = activity;
 
+        convertActivityFromTranslucent(mActivity);
         setSliderFadeColor(Color.TRANSPARENT);
 
         mShadowView = new SwipeBackShadowView(activity);
-
         addView(mShadowView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
@@ -245,16 +245,6 @@ public class SwipeBackLayout extends ViewGroup {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        return super.dispatchKeyEvent(event);
-    }
-
-    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
             && !event.isCanceled()) {
@@ -270,6 +260,10 @@ public class SwipeBackLayout extends ViewGroup {
      * 滑动返回是否可用
      */
     private boolean isSwipeBackEnable() {
+        if (mActivity instanceof ISwipeBack) {
+            ISwipeBack swipeBack = (ISwipeBack) mActivity;
+            return mSwipeBackEnable && swipeBack.isEnableGesture() && SwipeBackManager.getInstance().isSwipeBackEnable();
+        }
         return mSwipeBackEnable && SwipeBackManager.getInstance().isSwipeBackEnable();
     }
 
@@ -305,7 +299,7 @@ public class SwipeBackLayout extends ViewGroup {
          * @param panel       The child view that was moved
          * @param slideOffset The new offset of this sliding pane within its range, from 0-1
          */
-        void onPanelSlide(View panel, float slideOffset);
+        void onPanelSlide(@NonNull View panel, float slideOffset);
 
         /**
          * Called when a sliding pane becomes slid completely open. The pane may or may not
@@ -313,7 +307,7 @@ public class SwipeBackLayout extends ViewGroup {
          *
          * @param panel The child view that was slid to an open position, revealing other panes
          */
-        void onPanelOpened(View panel);
+        void onPanelOpened(@NonNull View panel);
 
         /**
          * Called when a sliding pane becomes slid completely closed. The pane is now guaranteed
@@ -321,7 +315,7 @@ public class SwipeBackLayout extends ViewGroup {
          *
          * @param panel The child view that was slid to a closed position
          */
-        void onPanelClosed(View panel);
+        void onPanelClosed(@NonNull View panel);
     }
 
     /**
@@ -342,11 +336,11 @@ public class SwipeBackLayout extends ViewGroup {
         }
     }
 
-    public SwipeBackLayout(Context context) {
+    public SwipeBackLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    public SwipeBackLayout(Context context, AttributeSet attrs) {
+    public SwipeBackLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
@@ -359,8 +353,6 @@ public class SwipeBackLayout extends ViewGroup {
 //        mOverhangSize = (int) (DEFAULT_OVERHANG_SIZE * density + 0.5f);
         mOverhangSize = 0;
         // ======================== 新加的 END ========================
-
-        final ViewConfiguration viewConfig = ViewConfiguration.get(context);
 
         setWillNotDraw(false);
 
@@ -433,6 +425,7 @@ public class SwipeBackLayout extends ViewGroup {
     void dispatchOnPanelSlide(View panel) {
         // ======================== 新加的 START ========================
         mShadowView.setShadowAlpha(1.0f - mSlideOffset);
+
         mShadowView.onPanelSlide(mSlideOffset);
         // ======================== 新加的 END ========================
 
@@ -596,7 +589,7 @@ public class SwipeBackLayout extends ViewGroup {
         }
 
         int layoutHeight = 0;
-        int maxLayoutHeight = -1;
+        int maxLayoutHeight = 0;
         switch (heightMode) {
             case MeasureSpec.EXACTLY:
                 layoutHeight = maxLayoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
@@ -966,10 +959,9 @@ public class SwipeBackLayout extends ViewGroup {
 
         mDragHelper.processTouchEvent(ev);
 
-        final int action = ev.getAction();
         boolean wantTouchEvents = true;
 
-        switch (action & MotionEventCompat.ACTION_MASK) {
+        switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
                 final float x = ev.getX();
                 final float y = ev.getY();
@@ -1124,11 +1116,11 @@ public class SwipeBackLayout extends ViewGroup {
                 lp.dimPaint = new Paint();
             }
             lp.dimPaint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_OVER));
-            if (ViewCompat.getLayerType(v) != ViewCompat.LAYER_TYPE_HARDWARE) {
-                ViewCompat.setLayerType(v, ViewCompat.LAYER_TYPE_HARDWARE, lp.dimPaint);
+            if (v.getLayerType() != View.LAYER_TYPE_HARDWARE) {
+                v.setLayerType(View.LAYER_TYPE_HARDWARE, lp.dimPaint);
             }
             invalidateChildRegion(v);
-        } else if (ViewCompat.getLayerType(v) != ViewCompat.LAYER_TYPE_NONE) {
+        } else if (v.getLayerType() != View.LAYER_TYPE_NONE) {
             if (lp.dimPaint != null) {
                 lp.dimPaint.setColorFilter(null);
             }
@@ -1155,28 +1147,7 @@ public class SwipeBackLayout extends ViewGroup {
             canvas.clipRect(mTmpRect);
         }
 
-        if (Build.VERSION.SDK_INT >= 11) { // HC
-            result = super.drawChild(canvas, child, drawingTime);
-        } else {
-            if (lp.dimWhenOffset && mSlideOffset > 0) {
-                if (!child.isDrawingCacheEnabled()) {
-                    child.setDrawingCacheEnabled(true);
-                }
-                final Bitmap cache = child.getDrawingCache();
-                if (cache != null) {
-                    canvas.drawBitmap(cache, child.getLeft(), child.getTop(), lp.dimPaint);
-                    result = false;
-                } else {
-                    Log.e(TAG, "drawChild: child view " + child + " returned null drawing cache");
-                    result = super.drawChild(canvas, child, drawingTime);
-                }
-            } else {
-                if (child.isDrawingCacheEnabled()) {
-                    child.setDrawingCacheEnabled(false);
-                }
-                result = super.drawChild(canvas, child, drawingTime);
-            }
-        }
+        result = super.drawChild(canvas, child, drawingTime);
 
         canvas.restoreToCount(save);
 
@@ -1558,7 +1529,7 @@ public class SwipeBackLayout extends ViewGroup {
         }
 
         @Override
-        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+        public void onEdgeDragStarted(int edgeFlags, final int pointerId) {
             // ======================== 新加的 START ========================
 //            mDragHelper.captureChildView(mSlideableView, pointerId);
 
