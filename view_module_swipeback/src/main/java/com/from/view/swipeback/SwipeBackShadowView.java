@@ -49,17 +49,10 @@ class SwipeBackShadowView extends FrameLayout {
      * 是否是微信滑动返回样式
      */
     private boolean mIsWeChatStyle = true;
-    private boolean mIsCurrentActivityTranslucent;
 
     SwipeBackShadowView(Activity activity) {
         super(activity);
         mActivity = activity;
-
-        TypedArray typedArray = mActivity.getTheme().obtainStyledAttributes(new int[]{
-            android.R.attr.windowIsTranslucent
-        });
-        mIsCurrentActivityTranslucent = typedArray.getBoolean(0, false);
-        typedArray.recycle();
         updateShadow();
     }
 

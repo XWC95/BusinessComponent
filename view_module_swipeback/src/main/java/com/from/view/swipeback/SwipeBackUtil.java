@@ -167,11 +167,13 @@ class SwipeBackUtil {
             TypedArray typedArray = activity.getTheme().obtainStyledAttributes(new int[]{
                 android.R.attr.windowIsTranslucent
             });
-            if (!typedArray.getBoolean(0, false)) return;
-
-            Method method = Activity.class.getDeclaredMethod("convertFromTranslucent");
-            method.setAccessible(true);
-            method.invoke(activity);
+            boolean translucent = typedArray.getBoolean(0, false);
+            if (translucent) {
+                Method method = Activity.class.getDeclaredMethod("convertFromTranslucent");
+                method.setAccessible(true);
+                method.invoke(activity);
+            }
+            typedArray.recycle();
         } catch (Throwable t) {
             // pass
         }

@@ -7,7 +7,7 @@ import com.from.business.http.HttpBusiness;
 import com.from.view.picture.ui.SelectImageActivity;
 import com.from.view.swipeback.SimpleSwipeBackDelegate;
 import com.from.view.swipeback.SwipeBackHelper;
-import com.from.view.swipeback.SwipeExcludeOptions;
+import com.from.view.swipeback.SwipeOptions;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.util.ArrayList;
@@ -40,10 +40,20 @@ public class BaseApplication extends Application {
          * 第三个参数：如果有些第三方库 Activity 不需要 swipeBack 可使用Option 配置
          * 第四个参数：滑动代理，扩展滑动开始和结束事件
          */
+
         List<String> exclude = new ArrayList<>();
         exclude.add(SelectImageActivity.class.getSimpleName());
-        SwipeExcludeOptions options = SwipeExcludeOptions.builder().exclude(exclude).build();
-        SwipeBackHelper.init(this, null, null, new SimpleSwipeBackDelegate() {
+        SwipeOptions options = SwipeOptions.builder()
+            .exclude(exclude) // 排除不需要侧滑的类
+            // 以下默认值
+//            .isWeChatStyle(true)  //  是否是微信滑动返回样式
+//            .isTrackingLeftEdge(true)     // 是否仅仅跟踪左侧边缘的滑动返回
+//            .isShadowAlphaGradient(true)     // 阴影区域的透明度是否根据滑动的距离渐变
+//            .isNavigationBarOverlap(false)     // 底部导航条是否悬浮在内容上
+//            .isNeedShowShadow(true) // 否显示滑动返回的阴影效果
+//            .shadowResId() // 阴影资源 id
+            .build();
+        SwipeBackHelper.init(this, null, options, new SimpleSwipeBackDelegate() {
             @Override
             public void onSwipeBackLayoutExecuted(Activity activity) {
 

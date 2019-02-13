@@ -23,7 +23,7 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private static final SwipeBackManager sInstance = new SwipeBackManager();
     private Stack<Activity> mActivityStack = new Stack<>();
     private Set<Class<? extends View>> mProblemViewClassSet = new HashSet<>();
-    private SwipeExcludeOptions mOptions;
+    private SwipeOptions mOptions;
     private SwipeBackHelper.Delegate mDelegate;
 
     public static SwipeBackManager getInstance() {
@@ -33,7 +33,7 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private SwipeBackManager() {
     }
 
-    public void init(@NonNull Application application, @Nullable List<Class<? extends View>> problemViewClassList, @Nullable SwipeExcludeOptions options, SwipeBackHelper.Delegate delegate) {
+    public void init(@NonNull Application application, @Nullable List<Class<? extends View>> problemViewClassList, @Nullable SwipeOptions options, SwipeBackHelper.Delegate delegate) {
         application.registerActivityLifecycleCallbacks(this);
 
         mProblemViewClassSet.add(WebView.class);
@@ -54,7 +54,6 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
         SwipeBackUtil.d("SwipeBackManager observe Activity onCreate");
         SwipeBackUtil.d("Activity info : package" + activity.getPackageName() + "___SimpleName：" + activity.getClass().getSimpleName());
 
-
         mActivityStack.add(activity);
         if (mOptions != null) {
             for (String className : mOptions.getClassNameList()) {
@@ -66,7 +65,6 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
         }
         SwipeBackHelper swipeBackHelper = SwipeBackHelper.create(activity);
         swipeBackHelper.setSlideDelegate(mDelegate);
-
 
 //        activity.getWindow().getDecorView().post(new Runnable() {
 //            @Override
@@ -155,7 +153,11 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
         return mProblemViewClassSet.contains(view.getClass());
     }
 
-    public SwipeExcludeOptions getOptions() {
+    @NonNull
+    public SwipeOptions getOptions() {
+        if (mOptions == null) {
+            return SwipeOptions.builder().build();
+        }
         return mOptions;
     }
 }

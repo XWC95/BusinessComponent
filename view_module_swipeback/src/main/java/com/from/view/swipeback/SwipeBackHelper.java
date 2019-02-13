@@ -32,7 +32,7 @@ public class SwipeBackHelper {
      * @param options              如果有些第三方库 Activity 不需要 swipeBack 可使用Option 配置
      * @param delegate             侧滑代理，扩展滑动开始和结束事件
      */
-    public static void init(Application application, List<Class<? extends View>> problemViewClassList, SwipeExcludeOptions options, Delegate delegate) {
+    public static void init(Application application, List<Class<? extends View>> problemViewClassList, SwipeOptions options, Delegate delegate) {
         SwipeBackManager.getInstance().init(application, problemViewClassList, options, delegate);
     }
 
@@ -60,14 +60,23 @@ public class SwipeBackHelper {
 
     /**
      * 初始化滑动返回
+     *
      */
     private void initSwipeBackFinish() {
-        SwipeExcludeOptions options = SwipeBackManager.getInstance().getOptions();
-        if (options != null && options.getClassNameList().contains(mActivity.getClass().getSimpleName())) {
+        SwipeOptions options = SwipeBackManager.getInstance().getOptions();
+        if (options.getClassNameList().contains(mActivity.getClass().getSimpleName())) {
             return;
         }
         mSwipeBackLayout = new SwipeBackLayout(mActivity);
         mSwipeBackLayout.attachToActivity(mActivity);
+
+        setIsWeChatStyle(options.getIsWeChatStyle());
+        setIsNavigationBarOverlap(options.getIsNavigationBarOverlap());
+        setIsNeedShowShadow(options.getIsNeedShowShadow());
+        setIsOnlyTrackingLeftEdge(options.getIsOnlyTrackingLeftEdge());
+        setIsShadowAlphaGradient(options.getIsShadowAlphaGradient());
+        setShadowResId(options.getShadowResId());
+
         mSwipeBackLayout.setPanelSlideListener(new SwipeBackLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -95,19 +104,6 @@ public class SwipeBackHelper {
                 }
             }
         });
-    }
-
-    /**
-     * 设置滑动返回是否可用。默认值为 true
-     *
-     * @param swipeBackEnable
-     * @return
-     */
-    public SwipeBackHelper setSwipeBackEnable(boolean swipeBackEnable) {
-        if (mSwipeBackLayout != null) {
-            mSwipeBackLayout.setSwipeBackEnable(swipeBackEnable);
-        }
-        return this;
     }
 
     /**
