@@ -9,7 +9,7 @@
 - 已适配 9P 和 windowIsTranslucent 透明主题
 
 #### 预览
-<div width="100%" align="center"><img src="view_module_swipeback/ezgif.com-video-to-gif.gif"  width="280px"/></div>
+<div width="100%" align="center"><img src="ezgif.com-video-to-gif.gif"  width="280px"/></div>
 
 #### 使用
 1.引入 Module 或 gradle
