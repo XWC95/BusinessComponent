@@ -34,6 +34,17 @@
 //            .shadowResId() // 阴影资源 id
             .build();
 ```
+4.动态控制是否需要侧滑（默认无需配置）
+```
+public class TestActivity extends AppCompatActivity implements ISwipeBack {
+  // 实现 ISwipeBack 接口，在某种情况下控制 isEnableGesture 函数返回值
+  // 动态的支配是否开启侧滑
+ @Override
+    public boolean isEnableGesture() {
+        return true;
+    }
+}
+```
 
 值得注意的是，初始化之后你所使用的依赖库中的 Activity 也会拥有侧滑的能力.
 不过你可使用 option 剔除，如你正好需要也可以保留
