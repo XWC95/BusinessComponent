@@ -42,11 +42,11 @@ public final class RepositoryManagerFactory implements Factory<RepositoryManager
         Provider<Application> mApplicationProvider,
         Provider<Cache.Factory> mCachefactoryProvider) {
         RepositoryManager instance = new RepositoryManager();
-        RepositoryManager_MembersInjector.injectMRetrofit(
+        RepositoryManager_MembersInjector.injectRetrofit(
             instance, DoubleCheck.lazy(mRetrofitProvider));
-        RepositoryManager_MembersInjector.injectMRxCache(instance, DoubleCheck.lazy(mRxCacheProvider));
-        RepositoryManager_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
-        RepositoryManager_MembersInjector.injectMCachefactory(instance, mCachefactoryProvider.get());
+        RepositoryManager_MembersInjector.injectRxCache(instance, DoubleCheck.lazy(mRxCacheProvider));
+        RepositoryManager_MembersInjector.injectApplication(instance, mApplicationProvider.get());
+        RepositoryManager_MembersInjector.injectCachefactory(instance, mCachefactoryProvider.get());
         return instance;
     }
 

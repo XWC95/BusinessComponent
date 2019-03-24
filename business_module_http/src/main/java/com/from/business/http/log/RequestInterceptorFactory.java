@@ -31,8 +31,8 @@ public final class RequestInterceptorFactory implements Factory<RequestIntercept
         Provider<FormatPrinter> mPrinterProvider,
         Provider<RequestInterceptor.Level> printLevelProvider) {
         RequestInterceptor instance = new RequestInterceptor();
-        RequestInterceptorMembersInjector.injectMHandler(instance, mHandlerProvider.get());
-        RequestInterceptorMembersInjector.injectMPrinter(instance, mPrinterProvider.get());
+        RequestInterceptorMembersInjector.injectHandler(instance, mHandlerProvider.get());
+        RequestInterceptorMembersInjector.injectPrinter(instance, mPrinterProvider.get());
         RequestInterceptorMembersInjector.injectPrintLevel(instance, printLevelProvider.get());
         return instance;
     }

@@ -40,25 +40,25 @@ public final class RepositoryManager_MembersInjector implements MembersInjector<
 
     @Override
     public void injectMembers(RepositoryManager instance) {
-        injectMRetrofit(instance, DoubleCheck.lazy(mRetrofitProvider));
-        injectMRxCache(instance, DoubleCheck.lazy(mRxCacheProvider));
-        injectMApplication(instance, mApplicationProvider.get());
-        injectMCachefactory(instance, mCachefactoryProvider.get());
+        injectRetrofit(instance, DoubleCheck.lazy(mRetrofitProvider));
+        injectRxCache(instance, DoubleCheck.lazy(mRxCacheProvider));
+        injectApplication(instance, mApplicationProvider.get());
+        injectCachefactory(instance, mCachefactoryProvider.get());
     }
 
-    public static void injectMRetrofit(RepositoryManager instance, Lazy<Retrofit> mRetrofit) {
+    public static void injectRetrofit(RepositoryManager instance, Lazy<Retrofit> mRetrofit) {
         instance.mRetrofit = mRetrofit;
     }
 
-    public static void injectMRxCache(RepositoryManager instance, Lazy<RxCache> mRxCache) {
+    public static void injectRxCache(RepositoryManager instance, Lazy<RxCache> mRxCache) {
         instance.mRxCache = mRxCache;
     }
 
-    public static void injectMApplication(RepositoryManager instance, Application mApplication) {
+    public static void injectApplication(RepositoryManager instance, Application mApplication) {
         instance.mApplication = mApplication;
     }
 
-    public static void injectMCachefactory(RepositoryManager instance, Cache.Factory mCachefactory) {
+    public static void injectCachefactory(RepositoryManager instance, Cache.Factory mCachefactory) {
         instance.mCachefactory = mCachefactory;
     }
 }

@@ -32,16 +32,16 @@ public final class RequestInterceptorMembersInjector
 
     @Override
     public void injectMembers(RequestInterceptor instance) {
-        injectMHandler(instance, mHandlerProvider.get());
-        injectMPrinter(instance, mPrinterProvider.get());
+        injectHandler(instance, mHandlerProvider.get());
+        injectPrinter(instance, mPrinterProvider.get());
         injectPrintLevel(instance, printLevelProvider.get());
     }
 
-    public static void injectMHandler(RequestInterceptor instance, HttpHandler mHandler) {
+    public static void injectHandler(RequestInterceptor instance, HttpHandler mHandler) {
         instance.mHandler = mHandler;
     }
 
-    public static void injectMPrinter(RequestInterceptor instance, FormatPrinter mPrinter) {
+    public static void injectPrinter(RequestInterceptor instance, FormatPrinter mPrinter) {
         instance.mPrinter = mPrinter;
     }
 

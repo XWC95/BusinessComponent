@@ -22,7 +22,7 @@ import okhttp3.Request;
  * ================================================
  */
 public class DefaultFormatPrinter implements FormatPrinter {
-    private static final String TAG = "ArmsHttpLog";
+    private static final String TAG = "BusinessHttpLog";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final String DOUBLE_SEPARATOR = LINE_SEPARATOR + LINE_SEPARATOR;
     private static final String[] OMITTED_RESPONSE = {LINE_SEPARATOR, "Omitted response body"};
@@ -161,10 +161,10 @@ public class DefaultFormatPrinter implements FormatPrinter {
             return 0;
         }
     };
-    private static final String[] ARMS = new String[]{"-A-", "-R-", "-M-", "-S-"};
+    private static final String[] ARMS = new String[]{"-V-", "-E-", "-A-"};
 
     private static String computeKey() {
-        if (last.get() >= 4) {
+        if (last.get() >= 3) {
             last.set(0);
         }
         String s = ARMS[last.get()];
