@@ -185,7 +185,6 @@ public class SwipeBackLayout extends ViewGroup {
     void attachToActivity(Activity activity) {
         mActivity = activity;
 
-        convertActivityFromTranslucent(mActivity);
         setSliderFadeColor(Color.TRANSPARENT);
 
         mShadowView = new SwipeBackShadowView(activity);

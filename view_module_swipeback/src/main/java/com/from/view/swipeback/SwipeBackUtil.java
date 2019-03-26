@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * @version 0.0.9
  * @since 2019-1
  */
-class SwipeBackUtil {
+final class SwipeBackUtil {
     private SwipeBackUtil() {
     }
 
@@ -162,6 +162,11 @@ class SwipeBackUtil {
         }
     }
 
+    /**
+     * 转为不透明
+     *
+     * @param activity activity
+     */
     static void convertActivityFromTranslucent(Activity activity) {
         try {
             TypedArray typedArray = activity.getTheme().obtainStyledAttributes(new int[]{

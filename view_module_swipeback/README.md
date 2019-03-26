@@ -1,5 +1,7 @@
 # view_module_swipeback
 
+[ ![Download](https://api.bintray.com/packages/xwc/AndroidLibrary/view_module_swipeback/images/download.svg?version=1.0.3) ](https://bintray.com/xwc/AndroidLibrary/view_module_swipeback/1.0.3/link)
+
 ### 介绍
 无需继承和实现，侧滑只需一步，0接入成本，已适配Android 9P ，透明主题。
 
@@ -14,14 +16,14 @@
 #### 使用
 1.引入 Module 或 gradle
 ```
-  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.2'
+  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.3'
 ```
 
 2.在 Application 初始化
 ```
   SwipeBackHelper.init(this);
 ```
-3.配置项目
+3.配置项目（默认无需配置）
 ```
      SwipeOptions options = SwipeOptions.builder()
             .exclude(exclude) // 排除不需要侧滑的类

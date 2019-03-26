@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.from.view.picture.PictureSelector;
 import com.from.view.picture.imageloader.GlideImageLoader;
+import com.from.view.swipeback.ISwipeBack;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import static me.businesscomponent.MainActivity.SELECT_IMAGE;
  * @author Vea
  * @since 2019-01-16
  */
-public class PicExampleActivity extends AppCompatActivity {
+public class PicExampleActivity extends AppCompatActivity implements ISwipeBack {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,5 +48,11 @@ public class PicExampleActivity extends AppCompatActivity {
             List<String> paths = PictureSelector.obtainPathResult(data);
             Toast.makeText(PicExampleActivity.this, paths.get(0), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean isEnableGesture() {
+        // 通过返回值控制是否可以侧滑
+        return false;
     }
 }

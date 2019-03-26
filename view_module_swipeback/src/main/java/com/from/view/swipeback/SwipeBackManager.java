@@ -16,10 +16,11 @@ import java.util.Set;
 import java.util.Stack;
 
 /**
+ * @author Vea
  * @version 0.0.9
  * @since 2019-1
  */
-class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
+final class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private static final SwipeBackManager sInstance = new SwipeBackManager();
     private Stack<Activity> mActivityStack = new Stack<>();
     private Set<Class<? extends View>> mProblemViewClassSet = new HashSet<>();
@@ -33,7 +34,10 @@ class SwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private SwipeBackManager() {
     }
 
-    public void init(@NonNull Application application, @Nullable List<Class<? extends View>> problemViewClassList, @Nullable SwipeOptions options, SwipeBackHelper.Delegate delegate) {
+    public void init(@NonNull Application application,
+        @Nullable List<Class<? extends View>> problemViewClassList,
+        @Nullable SwipeOptions options,
+        SwipeBackHelper.Delegate delegate) {
         application.registerActivityLifecycleCallbacks(this);
 
         mProblemViewClassSet.add(WebView.class);

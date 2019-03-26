@@ -8,13 +8,16 @@ import android.view.View;
 
 import java.util.List;
 
+import static com.from.view.swipeback.SwipeBackUtil.convertActivityFromTranslucent;
+
 /**
  * 滑动返回帮助类
  *
+ * @author Vea
  * @version 0.0.9
  * @since 2019-1
  */
-public class SwipeBackHelper {
+public final class SwipeBackHelper {
     private Activity mActivity;
     private Delegate mDelegate;
     private SwipeBackLayout mSwipeBackLayout;
@@ -36,6 +39,11 @@ public class SwipeBackHelper {
         SwipeBackManager.getInstance().init(application, problemViewClassList, options, delegate);
     }
 
+    /**
+     * 必须在 Application 的 onCreate 方法中调用
+     *
+     * @param application application
+     */
     public static void init(Application application) {
         SwipeBackManager.getInstance().init(application, null, null, null);
     }
@@ -60,7 +68,6 @@ public class SwipeBackHelper {
 
     /**
      * 初始化滑动返回
-     *
      */
     private void initSwipeBackFinish() {
         SwipeOptions options = SwipeBackManager.getInstance().getOptions();
@@ -78,8 +85,14 @@ public class SwipeBackHelper {
         setShadowResId(options.getShadowResId());
 
         mSwipeBackLayout.setPanelSlideListener(new SwipeBackLayout.PanelSlideListener() {
+            private boolean flag;
+
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
+                if (!flag) {
+                    convertActivityFromTranslucent(mActivity);
+                    flag = true;
+                }
                 // 开始滑动返回时关闭软键盘
                 if (slideOffset < 0.03) {
                     SwipeBackUtil.closeKeyboard(mActivity);

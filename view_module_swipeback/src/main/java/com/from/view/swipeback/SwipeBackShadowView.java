@@ -1,7 +1,6 @@
 package com.from.view.swipeback;
 
 import android.app.Activity;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.annotation.DrawableRes;
@@ -21,6 +20,7 @@ import static com.from.view.swipeback.SwipeBackUtil.getRealScreenHeight;
 /**
  * 左侧阴影控件
  *
+ * @author Vea
  * @version 0.0.9
  * @since 2019-1
  */
@@ -167,7 +167,6 @@ class SwipeBackShadowView extends FrameLayout {
         if (mPreImageView != null) {
             return;
         }
-
         // add 和 remove 方式时，滑动返回结束后的最后一帧通过 draw 来实现，避免抖动
         if (mPreContentView == null && mPreDecorView != null) {
             mPreDecorView.draw(canvas);

@@ -9,7 +9,7 @@ public interface ISwipeBack {
     /**
      * 返回 true 可以侧滑
      *
-     * @return
+     * @return 返回 true 可以侧滑
      */
     boolean isEnableGesture();
 }

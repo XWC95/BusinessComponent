@@ -2,6 +2,11 @@ package com.from.view.swipeback;
 
 import android.app.Activity;
 
+/**
+ * @author Vea
+ * @version 1.0.2
+ * @since 2019-03
+ */
 public class SimpleSwipeBackDelegate implements SwipeBackHelper.Delegate {
     /**
      * 正在滑动返回
