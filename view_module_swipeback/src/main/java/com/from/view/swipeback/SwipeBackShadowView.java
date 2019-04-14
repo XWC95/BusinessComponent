@@ -106,8 +106,8 @@ class SwipeBackShadowView extends FrameLayout {
             if (preActivity != null) {
                 mPreActivity = new WeakReference<>(preActivity);
                 mPreDecorView = (ViewGroup) preActivity.getWindow().getDecorView();
-                for(int i = 0 ; i < mPreDecorView.getChildCount();i++){
-                    if(mPreDecorView.getChildAt(i) instanceof SwipeBackLayout){
+                for (int i = 0; i < mPreDecorView.getChildCount(); i++) {
+                    if (mPreDecorView.getChildAt(i) instanceof SwipeBackLayout) {
                         mPreContentView = mPreDecorView.getChildAt(i);
                         mPreDecorView.removeView(mPreContentView);
                         addView(mPreContentView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -127,83 +127,42 @@ class SwipeBackShadowView extends FrameLayout {
             return;
         }
 
-        if (mPreDecorView != null && mPreContentView != null && !(mPreContentView instanceof ViewGroup)) {
-            if (mPreDecorView != null && mPreContentView != null) {
-                if (isNeedAddImageView && mPreImageView == null) {
-                    mPreImageView = new ImageView(mActivity);
-                    mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    mPreImageView.setImageBitmap(getBitmap(mPreContentView));
-                    addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                }
-
-                removeView(mPreContentView);
-
-                ViewGroup.LayoutParams lp = null;
-                if (!(mPreContentView instanceof SwipeBackLayout)) {
-                    int width = mPreDecorView.getWidth();
-                    int height = mPreDecorView.getHeight() - getNavigationBarHeight(activity);
-                    if (!SwipeBackUtil.isPortrait(activity)) {
-                        width = mPreDecorView.getWidth() - getNavigationBarHeight(activity);
-                        height = mPreDecorView.getHeight();
-                    }
-                    if (mPreDecorView instanceof FrameLayout) {
-                        lp = new FrameLayout.LayoutParams(width, height);
-                    } else if (mPreDecorView instanceof LinearLayout) {
-                        lp = new LinearLayout.LayoutParams(width, height);
-                    } else if (mPreDecorView instanceof RelativeLayout) {
-                        lp = new RelativeLayout.LayoutParams(width, height);
-                    }
-                }
-                if (lp == null) {
-                    mPreDecorView.addView(mPreContentView, 0);
-                } else {
-                    mPreDecorView.addView(mPreContentView, 0, lp);
-                }
-
-                mPreContentView = null;
-                mPreActivity.clear();
-                mPreActivity = null;
+        if (mPreDecorView != null && mPreContentView != null) {
+            if (isNeedAddImageView && mPreImageView == null) {
+                mPreImageView = new ImageView(mActivity);
+                mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                mPreImageView.setImageBitmap(getBitmap(mPreContentView));
+                addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             }
-        } else if (mPreDecorView != null && mPreContentView != null && mPreContentView instanceof ViewGroup) {
-            if (mPreDecorView != null && mPreContentView != null) {
-                if (isNeedAddImageView && mPreImageView == null && containsProblemView((ViewGroup) mPreContentView)) {
-                    mPreImageView = new ImageView(mActivity);
-                    mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    mPreImageView.setImageBitmap(getBitmap(mPreContentView));
-                    addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                }
 
-                removeView(mPreContentView);
+            removeView(mPreContentView);
 
-                ViewGroup.LayoutParams lp = null;
-                if (!(mPreContentView instanceof SwipeBackLayout)) {
-                    int width = mPreDecorView.getWidth();
-                    int height = mPreDecorView.getHeight() - getNavigationBarHeight(activity);
-                    if (!SwipeBackUtil.isPortrait(activity)) {
-                        width = mPreDecorView.getWidth() - getNavigationBarHeight(activity);
-                        height = mPreDecorView.getHeight();
-                    }
-                    if (mPreDecorView instanceof FrameLayout) {
-                        lp = new FrameLayout.LayoutParams(width, height);
-                    } else if (mPreDecorView instanceof LinearLayout) {
-                        lp = new LinearLayout.LayoutParams(width, height);
-                    } else if (mPreDecorView instanceof RelativeLayout) {
-                        lp = new RelativeLayout.LayoutParams(width, height);
-                    }
+            ViewGroup.LayoutParams lp = null;
+            if (!(mPreContentView instanceof SwipeBackLayout)) {
+                int width = mPreDecorView.getWidth();
+                int height = mPreDecorView.getHeight() - getNavigationBarHeight(activity);
+                if (!SwipeBackUtil.isPortrait(activity)) {
+                    width = mPreDecorView.getWidth() - getNavigationBarHeight(activity);
+                    height = mPreDecorView.getHeight();
                 }
-                if (lp == null) {
-                    mPreDecorView.addView(mPreContentView, 0);
-                } else {
-                    mPreDecorView.addView(mPreContentView, 0, lp);
+                if (mPreDecorView instanceof FrameLayout) {
+                    lp = new FrameLayout.LayoutParams(width, height);
+                } else if (mPreDecorView instanceof LinearLayout) {
+                    lp = new LinearLayout.LayoutParams(width, height);
+                } else if (mPreDecorView instanceof RelativeLayout) {
+                    lp = new RelativeLayout.LayoutParams(width, height);
                 }
-
-                mPreContentView = null;
-                mPreActivity.clear();
-                mPreActivity = null;
             }
+            if (lp == null) {
+                mPreDecorView.addView(mPreContentView, 0);
+            } else {
+                mPreDecorView.addView(mPreContentView, 0, lp);
+            }
+
+            mPreContentView = null;
+            mPreActivity.clear();
+            mPreActivity = null;
         }
-
-
     }
 
     @Override
