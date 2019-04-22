@@ -12,4 +12,5 @@
     <string name="maven_picture_preview_image_count">%1$s/%2$s</string>
     <string name="maven_picture_open_camera_failure">打开相机失败</string>
     <string name="maven_picture_photo_grid_capture">拍一张</string>
+    <string name="maven_picture_max_length">最大只支持选择%s大小图片</string>
 </resources>

@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/maven_picture_theme_bg_color">
 
     <com.from.view.picture.weight.FixViewPager
@@ -18,6 +19,14 @@
         android:layout_gravity="bottom"
         android:background="@color/maven_picture_theme_color">
 
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:paddingLeft="12dp"
+            android:textColor="@android:color/white"
+            tools:text="20M" />
         <com.from.view.picture.weight.SuperCheckBox
             android:id="@+id/preview_checkbox"
             style="@style/maven_picture_SuperCheckboxTheme"

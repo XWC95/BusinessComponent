@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,6 +43,7 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
     private SelectImageHelper mSelectImageHelper;
     private SuperCheckBox mPreViewCheckbox;
     private TextView mSelectImageTitle;
+    private TextView mImageSize;
     private boolean mHideTitleBar;
     private Button mSelectCompleteBtn;
     private RelativeLayout mTitleBar;
@@ -87,8 +89,10 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
         mSelectCompleteBtn = findViewById(R.id.btn_complete);
         mTitleBar = findViewById(R.id.preview_title);
         mBottomBar = findViewById(R.id.bottom_bar);
+        mImageSize = findViewById(R.id.tv_size);
         resetCheckBox(mSelectImageHelper.selectPosition);
         resetImageTitle(mSelectImageHelper.selectPosition);
+        setImageSize(mSelectImageHelper.selectPosition);
         resetCompleteBtn();
     }
 
@@ -97,12 +101,36 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
         mPreViewCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mSelectImageHelper.getSelectCount() >= mSelectorSpec.getMaxSelectImage() && mPreViewCheckbox.isChecked()) {
-                    mPreViewCheckbox.setChecked(false);
-                    Toast.makeText(PreviewImageActivity.this, getString(R.string.maven_picture_max_select_image, String.valueOf(mSelectorSpec.getMaxSelectImage())), Toast.LENGTH_LONG).show();
+                int position = mSelectorSpec.isOpenCamera()
+                        ? mPreViewPager.getCurrentItem() + 1
+                        : mPreViewPager.getCurrentItem();
+                ArrayList<ImageItem> imageItemList = mSelectImageHelper.getAllImageItem();
+                //文件大小是否超过最大设置
+                boolean overMaxLength = false;
+                if (imageItemList != null && !imageItemList.isEmpty()) {
+                    ImageItem imageItem = imageItemList.get(position);
+                    overMaxLength = imageItem.size > mSelectorSpec.getMaxLength();
+                }
+                if (overMaxLength) {
+                    //选择文件大小超出最大设置
+                    Toast.makeText(getApplicationContext(),
+                            String.format(getString(R.string.maven_picture_max_length),
+                                    Formatter.formatShortFileSize(getApplicationContext(),
+                                            mSelectorSpec.getMaxLength())),
+                            Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectImageHelper.notifyImageItem(mSelectorSpec.isOpenCamera() ? mPreViewPager.getCurrentItem() + 1 : mPreViewPager.getCurrentItem());
-                    resetCompleteBtn();
+                    if (mSelectImageHelper.getSelectCount() >= mSelectorSpec.getMaxSelectImage()
+                            && mPreViewCheckbox.isChecked()) {
+                        mPreViewCheckbox.setChecked(false);
+                        Toast.makeText(PreviewImageActivity.this,
+                                getString(R.string.maven_picture_max_select_image,
+                                        String.valueOf(mSelectorSpec.getMaxSelectImage())), Toast.LENGTH_LONG).show();
+                    } else {
+                        mSelectImageHelper.notifyImageItem(mSelectorSpec.isOpenCamera()
+                                ? mPreViewPager.getCurrentItem() + 1
+                                : mPreViewPager.getCurrentItem());
+                        resetCompleteBtn();
+                    }
                 }
             }
         });
@@ -110,6 +138,7 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
         mPreViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
+                setImageSize(position);
                 resetCheckBox(position);
                 resetImageTitle(position);
             }
@@ -151,6 +180,13 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
         }
     }
 
+    private void setImageSize(int position) {
+        ArrayList<ImageItem> imageItemList = mSelectImageHelper.getAllImageItem();
+        if (imageItemList != null && !imageItemList.isEmpty()) {
+            ImageItem imageItem = imageItemList.get(position);
+            mImageSize.setText(Formatter.formatShortFileSize(this, imageItem.size));
+        }
+    }
 
     private void resetImageTitle(int position) {
         String selectCount = String.valueOf(position + 1);
