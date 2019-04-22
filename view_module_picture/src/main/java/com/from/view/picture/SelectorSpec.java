@@ -34,6 +34,10 @@ public final class SelectorSpec {
     private UIImageLoader mImageLoader;
     //是否开启剪裁
     private boolean mNeedCrop;
+    /**
+     * 选择最大
+     */
+    private long mMaxLength;
     private PictureSelector mPictureSelector;
 
     private SelectorSpec() {
@@ -115,6 +119,10 @@ public final class SelectorSpec {
         return mMaxSelectImage;
     }
 
+    public long getMaxLength() {
+        return mMaxLength;
+    }
+
     public SelectorSpec setMaxSelectImage(int maxSelectImage) {
         this.mMaxSelectImage = maxSelectImage;
         return this;
@@ -142,9 +150,15 @@ public final class SelectorSpec {
         return this;
     }
 
+    public SelectorSpec setMaxLength(long length) {
+        this.mMaxLength = length;
+        return this;
+    }
+
     public UIImageLoader getImageLoader() {
         return mImageLoader;
     }
+
 
     public SelectorSpec setImageLoader(UIImageLoader imageLoader) {
         mImageLoader = imageLoader;
