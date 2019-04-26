@@ -9,6 +9,7 @@ import com.from.business.http.retrofiturlmanager.RetrofitUrlManager;
 import com.uber.autodispose.AutoDisposeConverter;
 
 import me.businesscomponent.BaseApplication;
+import me.businesscomponent.utils.PopUtils;
 import me.businesscomponent.utils.RxLifecycleUtils;
 import timber.log.Timber;
 
@@ -32,7 +33,7 @@ public class HttpExampleActivity extends AppCompatActivity {
         pm = new HttpPresenterOrViewModel();
         pm.setLifecycle(getLifecycle());
 
-        pm.getUserList(false);// false 不更新，使用缓存数据
+        pm.getUserList(PopUtils.getTipDialog(this));
         pm.getGirlList();
 
     }
