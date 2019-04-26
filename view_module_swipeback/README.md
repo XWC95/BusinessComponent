@@ -9,14 +9,15 @@
 - 自动检索是否第一个Activity
 - 两种方式配置不需要侧滑Activity，使用 SwipeOptions 集中配置，或 Activity 实现接口 ISwipeBack 接口
 - 支持 9P 和 windowIsTranslucent 透明主题
-- 支持日夜间模式切换
+- 适配日夜间模式切换
+
 #### 预览
 <div width="100%" align="center"><img src="ezgif.com-video-to-gif.gif"  width="280px"/></div>
 
 #### 使用
 1.引入 Module 或 gradle
 ```
-  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.4'
+  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.5'
 ```
 
 2.在 Application 初始化

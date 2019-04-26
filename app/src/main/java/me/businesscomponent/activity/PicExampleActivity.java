@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.from.view.picture.PictureSelector;
 import com.from.view.picture.imageloader.GlideImageLoader;
-import com.from.view.swipeback.ISwipeBack;
 
 import java.util.List;
 
@@ -20,14 +19,19 @@ import me.businesscomponent.R;
 import me.businesscomponent.utils.PopUtils;
 import me.businesscomponent.view.TipDialog;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static me.businesscomponent.ConstantsPermission.CAMERA;
 
 /**
  * @author Vea
  * @since 2019-01-16
  */
-public class PicExampleActivity extends AppCompatActivity implements ISwipeBack {
+public class PicExampleActivity extends AppCompatActivity {
+    // need implements ISwipeBack
+    //    @Override
+//    public boolean isEnableGesture() {
+//        // 通过返回值控制是否可以侧滑
+//        return false;
+//    }
     private static final int SELECT_IMAGE = 0x006F;
 
     @Override
@@ -70,11 +74,5 @@ public class PicExampleActivity extends AppCompatActivity implements ISwipeBack 
             }
             PopUtils.getTipDialog(this, pathsStr, TipDialog.Builder.ICON_TYPE_SUCCESS).show();
         }
-    }
-
-    @Override
-    public boolean isEnableGesture() {
-        // 通过返回值控制是否可以侧滑
-        return false;
     }
 }

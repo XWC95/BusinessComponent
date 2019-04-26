@@ -571,7 +571,8 @@ public class SwipeBackLayout extends ViewGroup {
                     widthSize = 300;
                 }
             } else {
-                throw new IllegalStateException("Width must have an exact value or MATCH_PARENT");
+                // pass
+//                throw new IllegalStateException("Width must have an exact value or MATCH_PARENT");
             }
         } else if (heightMode == MeasureSpec.UNSPECIFIED) {
             if (isInEditMode()) {
