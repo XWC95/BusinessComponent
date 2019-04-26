@@ -1,11 +1,14 @@
 package me.businesscomponent.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
 
 import com.from.view.picture.PictureSelector;
 import com.from.view.picture.imageloader.GlideImageLoader;
@@ -14,31 +17,46 @@ import com.from.view.swipeback.ISwipeBack;
 import java.util.List;
 
 import me.businesscomponent.R;
+import me.businesscomponent.utils.PopUtils;
+import me.businesscomponent.view.TipDialog;
 
-import static me.businesscomponent.MainActivity.SELECT_IMAGE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static me.businesscomponent.ConstantsPermission.CAMERA;
 
 /**
  * @author Vea
  * @since 2019-01-16
  */
 public class PicExampleActivity extends AppCompatActivity implements ISwipeBack {
+    private static final int SELECT_IMAGE = 0x006F;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic);
 
-        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PictureSelector.with(PicExampleActivity.this)
-                    .selectSpec()
-                    .setMaxSelectImage(6)
-                    .setOpenCamera(true)
-                    .setImageLoader(new GlideImageLoader())
-                    .setSpanCount(3)
-                    .startForResult(SELECT_IMAGE);
-            }
-        });
+        findViewById(R.id.btn)
+            .setOnClickListener(v -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(this,
+                                new String[]{Manifest.permission.CAMERA,
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                CAMERA);
+                        } else {
+                            PictureSelector.with(PicExampleActivity.this)
+                                .selectSpec()
+                                .setMaxSelectImage(6)
+                                .setOpenCamera(true)
+                                .setImageLoader(new GlideImageLoader())
+                                .setSpanCount(3)
+                                .startForResult(SELECT_IMAGE);
+                        }
+                    }
+                }
+            );
     }
 
     @Override
@@ -46,7 +64,11 @@ public class PicExampleActivity extends AppCompatActivity implements ISwipeBack 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == SELECT_IMAGE) {
             List<String> paths = PictureSelector.obtainPathResult(data);
-            Toast.makeText(PicExampleActivity.this, paths.get(0), Toast.LENGTH_SHORT).show();
+            String pathsStr = "";
+            for (String path : paths) {
+                pathsStr += path;
+            }
+            PopUtils.getTipDialog(this, pathsStr, TipDialog.Builder.ICON_TYPE_SUCCESS).show();
         }
     }
 

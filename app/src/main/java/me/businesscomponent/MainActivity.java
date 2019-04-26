@@ -13,7 +13,6 @@ import me.businesscomponent.activity.PicExampleActivity;
  * @since 2019-01
  */
 public class MainActivity extends AppCompatActivity {
-    public static final int SELECT_IMAGE = 0x006F;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnPicDemo:
-                startActivity(new Intent(this,PicExampleActivity.class));
+                startActivity(new Intent(this, PicExampleActivity.class));
                 break;
             case R.id.btnHttpDemo:
-                startActivity(new Intent(this,HttpExampleActivity.class));
+                startActivity(new Intent(this, HttpExampleActivity.class));
                 break;
             default:
                 break;

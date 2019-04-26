@@ -38,16 +38,16 @@ public class PopUtils {
     /**
      * 获取带文字提示的菊花形状Dialog
      *
-     * @param context 上下文
-     * @param word    提示文字
+     * @param context  上下文
+     * @param word     提示文字
+     * @param iconType icon类型
      * @return 返回TipDialog
      */
-    public static TipDialog getWordTipDialog(Context context, CharSequence word) {
+    public static TipDialog getTipDialog(Context context, CharSequence word, @TipDialog.Builder.IconType int iconType) {
         return new TipDialog
             .Builder(context)
-            .setIconType(TipDialog.Builder.ICON_TYPE_LOADING)
+            .setIconType(iconType)
             .setTipWord(word)
             .create();
     }
-
 }

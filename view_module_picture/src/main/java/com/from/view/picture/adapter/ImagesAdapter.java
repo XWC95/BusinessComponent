@@ -77,10 +77,10 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch (i) {
             case CAMERA_ITEM:
                 return new CameraViewHolder(LayoutInflater.from(mContext)
-                        .inflate(R.layout.maven_picture_item_camera_list, viewGroup, false));
+                    .inflate(R.layout.maven_picture_item_camera_list, viewGroup, false));
             case IMAGE_ITEM:
                 return new ImagesViewHolder(LayoutInflater.from(mContext)
-                        .inflate(R.layout.maven_picture_item_images_list, viewGroup, false));
+                    .inflate(R.layout.maven_picture_item_images_list, viewGroup, false));
             default:
                 break;
         }
@@ -114,16 +114,16 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             imagesViewHolder.mFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (item.size > mSelectorSpec.getMaxLength()) {
+                    if (mSelectorSpec.getMaxLength() > 0 && item.size > mSelectorSpec.getMaxLength()) {
                         //选择文件大小超出最大设置
                         Toast.makeText(mContext,
-                                String.format(mContext.getString(R.string.maven_picture_max_length),
-                                        Formatter.formatShortFileSize(mContext, mSelectorSpec.getMaxLength())),
-                                Toast.LENGTH_SHORT).show();
+                            String.format(mContext.getString(R.string.maven_picture_max_length),
+                                Formatter.formatShortFileSize(mContext, mSelectorSpec.getMaxLength())),
+                            Toast.LENGTH_SHORT).show();
                     } else {
                         imagesViewHolder.mSuperCheckBox.setChecked(!imagesViewHolder.mSuperCheckBox.isChecked());
                         if (mSelectItemBean.getSelectCount() >= mSelectorSpec.getMaxSelectImage()
-                                && imagesViewHolder.mSuperCheckBox.isChecked()) {
+                            && imagesViewHolder.mSuperCheckBox.isChecked()) {
                             imagesViewHolder.mSuperCheckBox.setChecked(false);
                             String maxSelect = String.format(mContext.getString(R.string.maven_picture_max_select_image), String.valueOf(mSelectorSpec.getMaxSelectImage()));
                             Toast.makeText(mContext, maxSelect, Toast.LENGTH_LONG).show();
@@ -148,7 +148,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         imagesViewHolder.mSuperCheckBox.setVisibility(mSelectorSpec.getMaxSelectImage() == 1 ? View.GONE : View.VISIBLE);
         imagesViewHolder.mMaskView.setVisibility(mSelectItemBean.contains(item) ? View.VISIBLE : View.GONE);
         mSelectorSpec.getImageLoader().imageLoader(imagesViewHolder.mImage, item.path, getImageResize(mContext), getImageResize(mContext),
-                R.drawable.maven_picture_ic_default_image);
+            R.drawable.maven_picture_ic_default_image);
     }
 
     private int getSurePosition(int position) {
@@ -209,6 +209,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         SuperCheckBox mSuperCheckBox;
         View mMaskView;
         FrameLayout mFrameLayout;
+
         ImagesViewHolder(@NonNull View itemView) {
             super(itemView);
             mSuperCheckBox = itemView.findViewById(R.id.checkbox);
