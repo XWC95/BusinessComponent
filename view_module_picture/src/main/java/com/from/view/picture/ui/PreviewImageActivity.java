@@ -101,12 +101,15 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
         mPreViewCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<ImageItem> imageItemList = mSelectImageHelper.getAllImageItem();
+
                 //文件大小是否超过最大设置
                 boolean overMaxLength = false;
-                if (imageItemList != null && !imageItemList.isEmpty()) {
-                    ImageItem imageItem = imageItemList.get(mPreViewPager.getCurrentItem());
-                    overMaxLength = imageItem.size > mSelectorSpec.getMaxLength();
+                if (mSelectorSpec.getMaxLength() > 0) {
+                    ArrayList<ImageItem> imageItemList = mSelectImageHelper.getAllImageItem();
+                    if (imageItemList != null && !imageItemList.isEmpty()) {
+                        ImageItem imageItem = imageItemList.get(mPreViewPager.getCurrentItem());
+                        overMaxLength = imageItem.size > mSelectorSpec.getMaxLength();
+                    }
                 }
                 if (overMaxLength) {
                     //选择文件大小超出最大设置
@@ -115,6 +118,7 @@ public class PreviewImageActivity extends AppCompatActivity implements OnPhotoTa
                                     Formatter.formatShortFileSize(getApplicationContext(),
                                             mSelectorSpec.getMaxLength())),
                             Toast.LENGTH_SHORT).show();
+                    mPreViewCheckbox.setChecked(false);
                 } else {
                     if (mSelectImageHelper.getSelectCount() >= mSelectorSpec.getMaxSelectImage()
                             && mPreViewCheckbox.isChecked()) {
