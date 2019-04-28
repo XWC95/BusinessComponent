@@ -114,7 +114,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             imagesViewHolder.mFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (item.size > mSelectorSpec.getMaxLength()) {
+                    if (mSelectorSpec.getMaxLength() > 0 && item.size > mSelectorSpec.getMaxLength()) {
                         //选择文件大小超出最大设置
                         Toast.makeText(mContext,
                                 String.format(mContext.getString(R.string.maven_picture_max_length),
