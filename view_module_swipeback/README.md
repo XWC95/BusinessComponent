@@ -17,7 +17,7 @@
 #### 使用
 1.引入 Module 或 gradle
 ```
-  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.5'
+  implementation 'com.from.view.swipeback:view_module_swipeback:1.0.6'
 ```
 
 2.在 Application 初始化
