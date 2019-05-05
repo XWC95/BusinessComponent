@@ -42,7 +42,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import static com.from.view.swipeback.SwipeBackUtil.convertActivityFromTranslucent;
 
 /**
  * 通过修改 SlidingPaneLayout 实现滑动返回布局

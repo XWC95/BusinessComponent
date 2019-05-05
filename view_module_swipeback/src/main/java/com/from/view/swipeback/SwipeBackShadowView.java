@@ -128,12 +128,12 @@ class SwipeBackShadowView extends FrameLayout {
         }
 
         if (mPreDecorView != null && mPreContentView != null) {
-            if (isNeedAddImageView && mPreImageView == null) {
-                mPreImageView = new ImageView(mActivity);
-                mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                mPreImageView.setImageBitmap(getBitmap(mPreContentView));
-                addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            }
+//            if (isNeedAddImageView && mPreImageView == null) {
+//                mPreImageView = new ImageView(mActivity);
+//                mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//                mPreImageView.setImageBitmap(getBitmap(mPreContentView));
+//                addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//            }
 
             removeView(mPreContentView);
 
