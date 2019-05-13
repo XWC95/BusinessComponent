@@ -7,11 +7,11 @@
 1.引入 Module 或 gradle
 ```
 implementation 'com.from.view.photoview:view_module_photoview:1.0.0'
-implementation 'com.from.view.picture:view_module_picture:1.0.3'
+implementation 'com.from.view.picture:view_module_picture:1.0.3.1'
 
 ```
 #### history
-- 1.0.3：添加选择图片时大小限制
+- 1.0.3.1：添加选择图片时大小限制
 
 代码可参考[PicExampleActivity](https://github.com/xwc520/BusinessComponent/blob/master/app/src/main/java/me/businesscomponent/activity/PicExampleActivity.java)
 

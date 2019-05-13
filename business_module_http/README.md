@@ -16,6 +16,12 @@
 ```
 implementation 'com.from.business.http:business_module_http:1.0.0'
 implementation 'com.uber.autodispose:autodispose-android:1.2.0'
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 ```
 
 ### 初始化
