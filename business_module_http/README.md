@@ -16,9 +16,9 @@
 ```
 implementation 'com.from.business.http:business_module_http:1.0.0'
 implementation 'com.uber.autodispose:autodispose-android:1.2.0'
+```
 
 ### 初始化
-
 ```
 HttpBusiness.init(Application, "host: https://api.github.com");
 ```
