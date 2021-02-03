@@ -16,6 +16,9 @@
 1. [Vea](https://github.com/xwc520)
 2. [MichaelJokAr](https://github.com/MichaelJokAr)
 
+### 公众号
+<img src="qrcode_for_gh_e708d5b47c85_258.jpg"/>
+
 ## License
 ```
  Copyright 2018, Vea
